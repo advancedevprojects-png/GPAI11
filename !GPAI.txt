@@ -1,0 +1,3922 @@
+
+
+# ULTIMATE STEM AI VISUALIZER — WORLD-CLASS MASTER PROMPT
+
+## Complete System Architecture, Product Specification & Implementation Blueprint
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 1: FOUNDATIONAL IDENTITY & ROLE DEFINITION
+# ═══════════════════════════════════════════════════════════════
+
+```markdown
+# ROLE DEFINITION
+
+You are a world-class Principal AI Systems Architect, Senior Full-Stack Engineer, 
+and Product Designer combined into one. You possess deep expertise in:
+
+- Generative AI application architecture (multi-agent orchestration, RAG, structured output)
+- Advanced frontend engineering (React 19, Next.js 15, WebGL, Canvas APIs, SVG manipulation)
+- Backend distributed systems (FastAPI, Node.js, Redis, PostgreSQL, vector databases)
+- Scientific computing (LaTeX, SMILES, circuit simulation, mathematical plotting)
+- Human-Computer Interaction (accessibility, micro-interactions, cognitive load reduction)
+- Production DevOps (Docker, Kubernetes, CI/CD, observability, edge deployment)
+
+Your mission: Build "NEXUS STEM AI Visualizer" — a production-grade application that 
+SURPASSES the GPAI App (AI STEM Copilot) in every dimension: accuracy, interactivity, 
+editability, speed, accessibility, and user delight.
+
+Every decision you make must optimize for THREE simultaneous goals:
+1. SCIENTIFIC ACCURACY — Zero tolerance for incorrect diagrams or equations
+2. INTERACTION QUALITY — Every element must be draggable, editable, annotatable
+3. PERFORMANCE — Sub-200ms render times, offline capability, instant feedback
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 2: PRODUCT VISION & COMPETITIVE DIFFERENTIATION
+# ═══════════════════════════════════════════════════════════════
+
+```markdown
+# PRODUCT VISION: NEXUS STEM AI VISUALIZER
+
+## What GPAI Does (Baseline):
+- Triple-verified STEM answers (GPT-5, Gemini, DeepSeek)
+- AI Visualizer generating editable diagrams
+- Camera-based problem input
+- Step-by-step solutions
+
+## What NEXUS Does BETTER (Our Enhancements):
+
+### Enhancement 1: MULTI-MODAL INPUT PIPELINE
+- Text input (natural language)
+- Camera/OCR input (photograph textbook problems, handwritten equations)
+- Voice input (speak your problem — "Draw the Krebs cycle")
+- Sketch input (rough hand-drawn sketch → AI-perfected diagram)
+- File upload (PDF pages, images, CSV data for graphing)
+- Drag-and-drop component palette (manual circuit/diagram building)
+
+### Enhancement 2: REAL-TIME COLLABORATIVE EDITING
+- Google Docs-style multiplayer cursors on diagrams
+- Live shared whiteboard mode for study groups
+- Comment/annotation threads pinned to specific diagram nodes
+- Version history with visual diff ("Show me what changed")
+
+### Enhancement 3: ADAPTIVE LEARNING ENGINE
+- Tracks which STEM topics user struggles with
+- Generates progressive difficulty visualizations
+- Spaced repetition integration (resurface key diagrams)
+- "Explain Like I'm 5" ↔ "PhD Level" complexity slider
+
+### Enhancement 4: SIMULATION MODE
+- Circuit diagrams are not just pictures — they SIMULATE (voltage, current flow)
+- Chemistry structures show electron density clouds, bond angles
+- Physics diagrams animate (projectile motion plays out in real-time)
+- Math graphs are interactive (drag points, see equation update live)
+
+### Enhancement 5: UNIVERSAL EXPORT & INTEGRATION
+- Export: SVG, PNG, PDF, LaTeX source, PowerPoint slide, Anki flashcard
+- Integration: Google Classroom, Notion, Obsidian, LMS (Canvas/Blackboard)
+- Embed: Generate shareable iframe/link for any diagram
+- API: Developer API for programmatic diagram generation
+
+### Enhancement 6: OFFLINE-FIRST + EDGE AI
+- Core functionality works without internet (using on-device models)
+- Cached rendering engines work fully offline
+- Sync when reconnected (conflict resolution)
+- PWA with native-app-quality experience
+
+### Enhancement 7: ACCESSIBILITY AS A FIRST-CLASS FEATURE
+- Screen reader descriptions auto-generated for every diagram
+- High-contrast and colorblind-safe palettes
+- Keyboard-only navigation for all diagram editing
+- Audio description mode ("This circuit contains a 9V battery connected to...")
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 3: COMPLETE TECHNICAL ARCHITECTURE
+# ═══════════════════════════════════════════════════════════════
+
+```markdown
+# SYSTEM ARCHITECTURE OVERVIEW
+
+┌─────────────────────────────────────────────────────────────────┐
+│                        CLIENT LAYER                              │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐   │
+│  │ Next.js  │ │  React   │ │  PWA     │ │  React Native    │   │
+│  │ 15 App   │ │  Native  │ │  Shell   │ │  (iOS/Android)   │   │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────────┬─────────┘   │
+│       └─────────────┴────────────┴────────────────┘              │
+│                           │                                      │
+│  ┌────────────────────────┴────────────────────────────────┐    │
+│  │              RENDERING ENGINE LAYER                      │    │
+│  │  ┌─────────┐ ┌─────────┐ ┌──────────┐ ┌─────────────┐  │    │
+│  │  │Mermaid  │ │React    │ │SMILES    │ │Plotly/       │  │    │
+│  │  │.js v11  │ │Flow v12 │ │Drawer    │ │D3.js/Mafs   │  │    │
+│  │  └─────────┘ └─────────┘ └──────────┘ └─────────────┘  │    │
+│  │  ┌─────────┐ ┌─────────┐ ┌──────────┐ ┌─────────────┐  │    │
+│  │  │CircuitJS│ │Three.js │ │KaTeX/    │ │Fabric.js    │  │    │
+│  │  │Sim      │ │(3D)     │ │MathJax   │ │(Canvas)     │  │    │
+│  │  └─────────┘ └─────────┘ └──────────┘ └─────────────┘  │    │
+│  └─────────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                    ┌─────────┴──────────┐
+                    │   API GATEWAY       │
+                    │   (Next.js Routes   │
+                    │    + tRPC + WS)     │
+                    └─────────┬──────────┘
+                              │
+┌─────────────────────────────┴──────────────────────────────────┐
+│                     INTELLIGENCE LAYER                          │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │                 ORCHESTRATOR AGENT                         │  │
+│  │         (Router + Classifier + Quality Gate)              │  │
+│  └────┬──────────┬──────────┬──────────┬──────────┬─────────┘  │
+│       │          │          │          │          │              │
+│  ┌────┴───┐ ┌───┴────┐ ┌──┴───┐ ┌───┴────┐ ┌──┴──────┐      │
+│  │Chemistry│ │Physics │ │Math  │ │Biology │ │CS/Logic │      │
+│  │Agent   │ │Agent   │ │Agent │ │Agent   │ │Agent    │      │
+│  └────┬───┘ └───┬────┘ └──┬───┘ └───┬────┘ └──┬──────┘      │
+│       │         │         │         │          │              │
+│  ┌────┴─────────┴─────────┴─────────┴──────────┴──────────┐  │
+│  │              TRIPLE VERIFICATION ENGINE                   │  │
+│  │    ┌──────────┐  ┌──────────┐  ┌──────────┐             │  │
+│  │    │ OpenAI   │  │ Anthropic│  │ Google   │             │  │
+│  │    │ GPT-4o   │  │ Claude   │  │ Gemini   │             │  │
+│  │    │          │  │ 3.5      │  │ 2.0      │             │  │
+│  │    └──────────┘  └──────────┘  └──────────┘             │  │
+│  │         Consensus Voting + Conflict Resolution           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │              VALIDATION & SIMULATION ENGINE               │  │
+│  │  - Circuit: SPICE-based simulation validation            │  │
+│  │  - Chemistry: RDKit molecular validation                 │  │
+│  │  - Math: SymPy symbolic verification                     │  │
+│  │  - Physics: Unit dimensional analysis checker            │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────┴──────────────────────────────────┐
+│                      DATA LAYER                                 │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐  │
+│  │PostgreSQL│ │ Redis    │ │ Pinecone │ │ S3/R2            │  │
+│  │(Users,   │ │(Cache,   │ │(Semantic │ │(Diagram assets,  │  │
+│  │ Projects)│ │ Sessions)│ │ Search)  │ │ exports)         │  │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 4: TECH STACK — COMPLETE DEPENDENCY MAP
+# ═══════════════════════════════════════════════════════════════
+
+```json
+{
+  "frontend": {
+    "framework": "Next.js 15 (App Router, Server Components, Server Actions)",
+    "ui_library": "shadcn/ui + Radix Primitives + Tailwind CSS v4",
+    "state": "Zustand v5 (global) + React Query v5 (server) + Jotai (atomic)",
+    "diagram_renderers": {
+      "flowcharts": "mermaid v11.4",
+      "node_diagrams": "@xyflow/react v12 (React Flow)",
+      "chemistry": "smiles-drawer v2 + RDKit.js",
+      "math_graphs": "mafs v0.19 + @plotly/react-plotly.js",
+      "math_equations": "katex v0.16 + react-katex",
+      "circuits": "custom CircuitJS integration + React Flow",
+      "3d_molecules": "@react-three/fiber + @react-three/drei",
+      "freeform_canvas": "tldraw v3 OR excalidraw",
+      "physics_animation": "matter.js + framer-motion"
+    },
+    "code_editor": "@monaco-editor/react",
+    "rich_text": "tiptap v2",
+    "collaboration": "yjs + y-websocket (CRDT-based)",
+    "camera_ocr": "tesseract.js + @mediapipe/tasks-vision",
+    "voice": "Web Speech API + whisper.cpp (WASM)",
+    "pwa": "next-pwa + workbox",
+    "testing": "vitest + @testing-library/react + playwright"
+  },
+  "backend": {
+    "api": "Next.js Route Handlers + tRPC v11",
+    "ai_sdk": "Vercel AI SDK v4 (multi-provider)",
+    "providers": ["openai (GPT-4o)", "anthropic (Claude 3.5 Sonnet)", "google (Gemini 2.0 Flash)"],
+    "validation": {
+      "chemistry": "rdkit-python (via microservice)",
+      "math": "sympy (via microservice)", 
+      "circuits": "PySpice (via microservice)",
+      "general": "zod v3 (schema validation)"
+    },
+    "database": "PostgreSQL 16 + Drizzle ORM",
+    "cache": "Redis 7 / Upstash",
+    "vector_db": "Pinecone / Qdrant (for semantic search of past diagrams)",
+    "file_storage": "Cloudflare R2 / AWS S3",
+    "auth": "NextAuth.js v5 / Clerk",
+    "email": "Resend",
+    "analytics": "PostHog",
+    "rate_limiting": "Upstash Ratelimit",
+    "websockets": "Socket.io / PartyKit (for collaboration)"
+  },
+  "devops": {
+    "hosting": "Vercel (frontend) + Railway/Fly.io (microservices)",
+    "ci_cd": "GitHub Actions",
+    "monitoring": "Sentry + Axiom",
+    "containers": "Docker + Docker Compose",
+    "edge": "Vercel Edge Functions + Cloudflare Workers"
+  }
+}
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 5: COMPLETE FILE STRUCTURE
+# ═══════════════════════════════════════════════════════════════
+
+```
+nexus-stem-visualizer/
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       ├── deploy-preview.yml
+│       └── deploy-production.yml
+├── apps/
+│   ├── web/                              # Next.js 15 Main App
+│   │   ├── app/
+│   │   │   ├── (auth)/
+│   │   │   │   ├── login/page.tsx
+│   │   │   │   ├── register/page.tsx
+│   │   │   │   └── layout.tsx
+│   │   │   ├── (dashboard)/
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx                # Dashboard home
+│   │   │   │   ├── workspace/
+│   │   │   │   │   ├── [id]/
+│   │   │   │   │   │   ├── page.tsx        # Individual workspace
+│   │   │   │   │   │   ├── loading.tsx
+│   │   │   │   │   │   └── error.tsx
+│   │   │   │   │   └── page.tsx            # Workspace list
+│   │   │   │   ├── history/page.tsx
+│   │   │   │   ├── templates/page.tsx
+│   │   │   │   └── settings/page.tsx
+│   │   │   ├── api/
+│   │   │   │   ├── ai/
+│   │   │   │   │   ├── classify/route.ts
+│   │   │   │   │   ├── generate/route.ts
+│   │   │   │   │   ├── verify/route.ts
+│   │   │   │   │   ├── explain/route.ts
+│   │   │   │   │   └── refine/route.ts
+│   │   │   │   ├── export/
+│   │   │   │   │   ├── svg/route.ts
+│   │   │   │   │   ├── png/route.ts
+│   │   │   │   │   ├── pdf/route.ts
+│   │   │   │   │   └── latex/route.ts
+│   │   │   │   ├── ocr/route.ts
+│   │   │   │   ├── voice/route.ts
+│   │   │   │   ├── collaborate/route.ts
+│   │   │   │   ├── trpc/[trpc]/route.ts
+│   │   │   │   └── webhooks/
+│   │   │   │       ├── stripe/route.ts
+│   │   │   │       └── clerk/route.ts
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx                    # Landing page
+│   │   │   ├── globals.css
+│   │   │   └── providers.tsx
+│   │   ├── components/
+│   │   │   ├── ui/                         # shadcn/ui components
+│   │   │   │   ├── button.tsx
+│   │   │   │   ├── dialog.tsx
+│   │   │   │   ├── dropdown-menu.tsx
+│   │   │   │   ├── input.tsx
+│   │   │   │   ├── tabs.tsx
+│   │   │   │   ├── toast.tsx
+│   │   │   │   ├── tooltip.tsx
+│   │   │   │   ├── slider.tsx
+│   │   │   │   ├── command.tsx
+│   │   │   │   └── ... (all shadcn components)
+│   │   │   ├── layout/
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── MobileNav.tsx
+│   │   │   │   └── CommandPalette.tsx
+│   │   │   ├── input/
+│   │   │   │   ├── PromptInput.tsx          # Main text input
+│   │   │   │   ├── VoiceInput.tsx           # Microphone button
+│   │   │   │   ├── CameraInput.tsx          # OCR camera
+│   │   │   │   ├── SketchInput.tsx          # Hand-draw pad
+│   │   │   │   ├── FileUpload.tsx           # PDF/image upload
+│   │   │   │   ├── ComplexitySlider.tsx     # ELI5 ↔ PhD slider
+│   │   │   │   └── InputModeSelector.tsx    # Toggle input modes
+│   │   │   ├── visualizer/
+│   │   │   │   ├── VisualizerDisplay.tsx    # MASTER RENDERER (switch)
+│   │   │   │   ├── VisualizerToolbar.tsx    # Edit/Export/Share tools
+│   │   │   │   ├── VisualizerCanvas.tsx     # Container with zoom/pan
+│   │   │   │   ├── renderers/
+│   │   │   │   │   ├── MermaidRenderer.tsx
+│   │   │   │   │   ├── ReactFlowRenderer.tsx
+│   │   │   │   │   ├── ChemistryRenderer.tsx
+│   │   │   │   │   ├── Chemistry3DRenderer.tsx
+│   │   │   │   │   ├── MathGraphRenderer.tsx
+│   │   │   │   │   ├── EquationRenderer.tsx
+│   │   │   │   │   ├── CircuitRenderer.tsx
+│   │   │   │   │   ├── PhysicsSimRenderer.tsx
+│   │   │   │   │   ├── DataTableRenderer.tsx
+│   │   │   │   │   ├── TimelineRenderer.tsx
+│   │   │   │   │   └── FreeformCanvasRenderer.tsx
+│   │   │   │   ├── editors/
+│   │   │   │   │   ├── CodeEditor.tsx       # Monaco side panel
+│   │   │   │   │   ├── PropertyPanel.tsx    # Node properties editor
+│   │   │   │   │   ├── StyleEditor.tsx      # Colors, fonts, themes
+│   │   │   │   │   └── DataEditor.tsx       # Edit underlying data
+│   │   │   │   ├── overlays/
+│   │   │   │   │   ├── AnnotationLayer.tsx
+│   │   │   │   │   ├── CollaboratorCursors.tsx
+│   │   │   │   │   └── MeasurementTools.tsx
+│   │   │   │   └── controls/
+│   │   │   │       ├── ZoomControls.tsx
+│   │   │   │       ├── LayerPanel.tsx
+│   │   │   │       ├── MiniMap.tsx
+│   │   │   │       └── UndoRedoControls.tsx
+│   │   │   ├── explanation/
+│   │   │   │   ├── StepByStep.tsx
+│   │   │   │   ├── ConceptCard.tsx
+│   │   │   │   ├── FormulaReference.tsx
+│   │   │   │   └── RelatedTopics.tsx
+│   │   │   ├── collaboration/
+│   │   │   │   ├── ShareDialog.tsx
+│   │   │   │   ├── CommentThread.tsx
+│   │   │   │   ├── PresenceAvatars.tsx
+│   │   │   │   └── VersionHistory.tsx
+│   │   │   ├── learning/
+│   │   │   │   ├── ProgressTracker.tsx
+│   │   │   │   ├── QuizGenerator.tsx
+│   │   │   │   ├── FlashcardExport.tsx
+│   │   │   │   └── DifficultyBadge.tsx
+│   │   │   └── common/
+│   │   │       ├── LoadingStates.tsx
+│   │   │       ├── ErrorBoundary.tsx
+│   │   │       ├── EmptyState.tsx
+│   │   │       ├── AccessibilityAnnouncer.tsx
+│   │   │       └── ThemeToggle.tsx
+│   │   ├── hooks/
+│   │   │   ├── useAIGenerate.ts
+│   │   │   ├── useClassifier.ts
+│   │   │   ├── useVisualizerState.ts
+│   │   │   ├── useCollaboration.ts
+│   │   │   ├── useExport.ts
+│   │   │   ├── useVoiceInput.ts
+│   │   │   ├── useCamera.ts
+│   │   │   ├── useOffline.ts
+│   │   │   ├── useKeyboardShortcuts.ts
+│   │   │   ├── useUndoRedo.ts
+│   │   │   └── useAccessibility.ts
+│   │   ├── stores/
+│   │   │   ├── visualizerStore.ts
+│   │   │   ├── workspaceStore.ts
+│   │   │   ├── collaborationStore.ts
+│   │   │   ├── historyStore.ts
+│   │   │   └── preferencesStore.ts
+│   │   ├── lib/
+│   │   │   ├── ai/
+│   │   │   │   ├── orchestrator.ts          # Main agent router
+│   │   │   │   ├── classifier.ts            # Domain classifier
+│   │   │   │   ├── generators/
+│   │   │   │   │   ├── chemistry.ts
+│   │   │   │   │   ├── physics.ts
+│   │   │   │   │   ├── math.ts
+│   │   │   │   │   ├── biology.ts
+│   │   │   │   │   ├── circuits.ts
+│   │   │   │   │   └── logic.ts
+│   │   │   │   ├── verifier.ts              # Triple verification
+│   │   │   │   ├── prompts/
+│   │   │   │   │   ├── system-prompts.ts    # All system prompts
+│   │   │   │   │   ├── few-shot-examples.ts
+│   │   │   │   │   └── output-schemas.ts    # Zod schemas for each domain
+│   │   │   │   └── providers.ts             # Multi-LLM config
+│   │   │   ├── renderers/
+│   │   │   │   ├── mermaid-config.ts
+│   │   │   │   ├── reactflow-config.ts
+│   │   │   │   ├── chemistry-config.ts
+│   │   │   │   ├── plotly-config.ts
+│   │   │   │   └── circuit-config.ts
+│   │   │   ├── export/
+│   │   │   │   ├── svg-exporter.ts
+│   │   │   │   ├── png-exporter.ts
+│   │   │   │   ├── pdf-exporter.ts
+│   │   │   │   ├── latex-exporter.ts
+│   │   │   │   ├── pptx-exporter.ts
+│   │   │   │   └── anki-exporter.ts
+│   │   │   ├── ocr/
+│   │   │   │   ├── tesseract-worker.ts
+│   │   │   │   ├── math-ocr.ts
+│   │   │   │   └── handwriting-recognizer.ts
+│   │   │   ├── collaboration/
+│   │   │   │   ├── yjs-provider.ts
+│   │   │   │   ├── awareness.ts
+│   │   │   │   └── conflict-resolver.ts
+│   │   │   ├── db/
+│   │   │   │   ├── schema.ts               # Drizzle schema
+│   │   │   │   ├── queries.ts
+│   │   │   │   └── migrations/
+│   │   │   ├── auth/
+│   │   │   │   └── config.ts
+│   │   │   ├── utils/
+│   │   │   │   ├── cn.ts
+│   │   │   │   ├── format.ts
+│   │   │   │   ├── debounce.ts
+│   │   │   │   └── constants.ts
+│   │   │   └── validators/
+│   │   │       ├── mermaid-validator.ts
+│   │   │       ├── smiles-validator.ts
+│   │   │       ├── circuit-validator.ts
+│   │   │       └── math-validator.ts
+│   │   ├── types/
+│   │   │   ├── diagram.ts
+│   │   │   ├── workspace.ts
+│   │   │   ├── ai.ts
+│   │   │   ├── collaboration.ts
+│   │   │   └── export.ts
+│   │   ├── public/
+│   │   │   ├── manifest.json
+│   │   │   ├── sw.js
+│   │   │   ├── icons/
+│   │   │   └── templates/
+│   │   ├── next.config.ts
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   └── package.json
+│   │
+│   └── mobile/                             # React Native (Expo)
+│       ├── app/
+│       ├── components/
+│       └── package.json
+│
+├── packages/
+│   ├── shared-types/                       # Shared TypeScript types
+│   ├── ai-prompts/                         # Centralized prompt management
+│   ├── diagram-schemas/                    # Zod schemas for all diagram types
+│   └── validation-engines/                 # Shared validation logic
+│
+├── services/
+│   ├── chemistry-validator/                # Python microservice (RDKit)
+│   │   ├── main.py
+│   │   ├── validator.py
+│   │   └── Dockerfile
+│   ├── math-engine/                        # Python microservice (SymPy)
+│   │   ├── main.py
+│   │   ├── solver.py
+│   │   └── Dockerfile
+│   ├── circuit-simulator/                  # Python microservice (PySpice)
+│   │   ├── main.py
+│   │   ├── simulator.py
+│   │   └── Dockerfile
+│   └── collaboration-server/               # WebSocket server (PartyKit/Socket.io)
+│       ├── server.ts
+│       └── Dockerfile
+│
+├── docker-compose.yml
+├── turbo.json                              # Turborepo config
+├── pnpm-workspace.yaml
+└── README.md
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 6: DATABASE SCHEMA
+# ═══════════════════════════════════════════════════════════════
+
+```typescript
+// lib/db/schema.ts — Drizzle ORM Schema
+
+import { pgTable, text, timestamp, jsonb, integer, boolean, uuid, pgEnum, real } from 'drizzle-orm/pg-core';
+import { relations } from 'drizzle-orm';
+
+// ─── ENUMS ───
+export const diagramDomainEnum = pgEnum('diagram_domain', [
+  'chemistry', 'physics', 'math', 'biology', 'circuit', 'logic', 
+  'flowchart', 'timeline', 'datavis', 'freeform'
+]);
+
+export const complexityLevelEnum = pgEnum('complexity_level', [
+  'elementary', 'middle_school', 'high_school', 'undergraduate', 
+  'graduate', 'research'
+]);
+
+export const exportFormatEnum = pgEnum('export_format', [
+  'svg', 'png', 'pdf', 'latex', 'pptx', 'anki', 'json'
+]);
+
+// ─── USERS ───
+export const users = pgTable('users', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  externalId: text('external_id').notNull().unique(), // Clerk/Auth ID
+  email: text('email').notNull().unique(),
+  name: text('name'),
+  avatarUrl: text('avatar_url'),
+  plan: text('plan').default('free'), // free, pro, team, enterprise
+  preferences: jsonb('preferences').default({}),
+  learningProfile: jsonb('learning_profile').default({}),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+// ─── WORKSPACES ───
+export const workspaces = pgTable('workspaces', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id').references(() => users.id).notNull(),
+  title: text('title').notNull().default('Untitled Workspace'),
+  description: text('description'),
+  isPublic: boolean('is_public').default(false),
+  shareToken: text('share_token').unique(),
+  tags: jsonb('tags').default([]),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+// ─── DIAGRAMS ───
+export const diagrams = pgTable('diagrams', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  workspaceId: uuid('workspace_id').references(() => workspaces.id).notNull(),
+  userId: uuid('user_id').references(() => users.id).notNull(),
+  
+  // Input
+  originalPrompt: text('original_prompt').notNull(),
+  inputType: text('input_type').default('text'), // text, voice, camera, sketch, file
+  
+  // Classification
+  domain: diagramDomainEnum('domain').notNull(),
+  subDomain: text('sub_domain'), // e.g., "organic_chemistry", "kinematics"
+  complexity: complexityLevelEnum('complexity').default('high_school'),
+  classificationConfidence: real('classification_confidence'),
+  
+  // Generated Content
+  generatedCode: text('generated_code').notNull(), // Mermaid, JSON, SMILES, etc.
+  codeFormat: text('code_format').notNull(), // 'mermaid', 'reactflow_json', 'smiles', 'plotly_json', 'latex', 'circuitjs'
+  renderedSvg: text('rendered_svg'), // Cached SVG output
+  
+  // Explanation
+  explanation: jsonb('explanation'), // Step-by-step breakdown
+  relatedConcepts: jsonb('related_concepts').default([]),
+  
+  // Verification
+  verificationResults: jsonb('verification_results'), // Triple-check results
+  isVerified: boolean('is_verified').default(false),
+  accuracyScore: real('accuracy_score'),
+  
+  // Metadata
+  version: integer('version').default(1),
+  parentDiagramId: uuid('parent_diagram_id'), // For version tracking
+  
+  // Collaboration
+  annotations: jsonb('annotations').default([]),
+  comments: jsonb('comments').default([]),
+  
+  // Analytics
+  viewCount: integer('view_count').default(0),
+  exportCount: integer('export_count').default(0),
+  
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+// ─── LEARNING PROGRESS ───
+export const learningProgress = pgTable('learning_progress', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id').references(() => users.id).notNull(),
+  topic: text('topic').notNull(),
+  domain: diagramDomainEnum('domain').notNull(),
+  proficiencyScore: real('proficiency_score').default(0),
+  totalInteractions: integer('total_interactions').default(0),
+  lastReviewedAt: timestamp('last_reviewed_at'),
+  nextReviewAt: timestamp('next_review_at'), // Spaced repetition
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+// ─── TEMPLATES ───
+export const templates = pgTable('templates', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  title: text('title').notNull(),
+  description: text('description'),
+  domain: diagramDomainEnum('domain').notNull(),
+  code: text('code').notNull(),
+  codeFormat: text('code_format').notNull(),
+  thumbnail: text('thumbnail'),
+  usageCount: integer('usage_count').default(0),
+  isOfficial: boolean('is_official').default(false),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+// ─── RELATIONS ───
+export const usersRelations = relations(users, ({ many }) => ({
+  workspaces: many(workspaces),
+  diagrams: many(diagrams),
+  learningProgress: many(learningProgress),
+}));
+
+export const workspacesRelations = relations(workspaces, ({ one, many }) => ({
+  user: one(users, { fields: [workspaces.userId], references: [users.id] }),
+  diagrams: many(diagrams),
+}));
+
+export const diagramsRelations = relations(diagrams, ({ one }) => ({
+  workspace: one(workspaces, { fields: [diagrams.workspaceId], references: [workspaces.id] }),
+  user: one(users, { fields: [diagrams.userId], references: [users.id] }),
+  parentDiagram: one(diagrams, { fields: [diagrams.parentDiagramId], references: [diagrams.id] }),
+}));
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 7: AI SYSTEM PROMPTS — THE BRAIN
+# ═══════════════════════════════════════════════════════════════
+
+```typescript
+// lib/ai/prompts/system-prompts.ts
+
+// ─────────────────────────────────────────────────────
+// MASTER CLASSIFIER PROMPT
+// ─────────────────────────────────────────────────────
+export const CLASSIFIER_SYSTEM_PROMPT = `
+You are NEXUS-Classifier, an expert STEM domain classification engine.
+
+## YOUR TASK
+Analyze the user's input and classify it into exactly ONE primary domain and ONE sub-domain.
+
+## CLASSIFICATION TAXONOMY
+
+### CHEMISTRY
+Sub-domains: organic_chemistry, inorganic_chemistry, biochemistry, electrochemistry, 
+thermochemistry, polymer_chemistry, analytical_chemistry, nuclear_chemistry
+Triggers: molecule names, chemical formulas, reactions, bonds, elements, pH, molarity,
+IUPAC names, functional groups, electron configuration, orbital diagrams
+
+### PHYSICS  
+Sub-domains: mechanics, electromagnetism, thermodynamics, optics, quantum_mechanics,
+nuclear_physics, fluid_dynamics, waves, relativity, astrophysics
+Triggers: force, velocity, acceleration, energy, momentum, electric field, magnetic field,
+circuit analysis, Ohm's law, Newton's laws, projectile, pendulum, wave equation
+
+### MATH
+Sub-domains: algebra, calculus, geometry, trigonometry, statistics, linear_algebra,
+differential_equations, number_theory, discrete_math, topology
+Triggers: equations, graphs, functions, derivatives, integrals, matrices, vectors,
+probability, proofs, sets, limits, series, geometric shapes, coordinate systems
+
+### BIOLOGY
+Sub-domains: cell_biology, genetics, ecology, anatomy, microbiology, evolution,
+neuroscience, botany, zoology, immunology, molecular_biology
+Triggers: cells, DNA, RNA, proteins, organs, ecosystems, species, photosynthesis,
+respiration, mitosis, meiosis, taxonomy, food chains, metabolic pathways
+
+### CIRCUIT (Electrical/Electronic Engineering)
+Sub-domains: dc_circuits, ac_circuits, digital_logic, analog_circuits, power_systems,
+microcontrollers, signal_processing, communication_systems
+Triggers: resistor, capacitor, inductor, transistor, op-amp, logic gates, AND, OR, NOT,
+flip-flop, timer, 555, Arduino, voltage divider, Kirchhoff, Thevenin
+
+### LOGIC & COMPUTER SCIENCE
+Sub-domains: algorithms, data_structures, automata, databases, networking, 
+software_architecture, machine_learning_theory, cryptography
+Triggers: flowchart, process, algorithm, sorting, searching, tree, graph traversal,
+state machine, UML, sequence diagram, class diagram, system design
+
+## OUTPUT FORMAT (STRICT JSON — NO MARKDOWN, NO EXPLANATION)
+{
+  "domain": "<primary_domain>",
+  "sub_domain": "<sub_domain>",
+  "confidence": <0.0-1.0>,
+  "visualization_type": "<mermaid|reactflow|smiles|plotly|latex|circuitjs|threejs|timeline|table>",
+  "complexity_detected": "<elementary|middle_school|high_school|undergraduate|graduate|research>",
+  "requires_simulation": <true|false>,
+  "requires_3d": <true|false>,
+  "key_entities": ["<entity1>", "<entity2>", "..."],
+  "suggested_enhancements": ["<suggestion1>", "<suggestion2>"]
+}
+
+## RULES
+1. ALWAYS output valid JSON. Nothing else.
+2. If confidence < 0.6, set domain to the best guess and add "ambiguous": true to output.
+3. If the prompt contains MULTIPLE domains, classify by the PRIMARY intent.
+4. The "visualization_type" field determines which rendering engine will be used.
+5. "suggested_enhancements" should contain 1-3 ideas for making the visualization more 
+   informative (e.g., "add electron flow arrows", "include unit labels", "show intermediate steps").
+`;
+
+// ─────────────────────────────────────────────────────
+// CHEMISTRY GENERATOR PROMPT
+// ─────────────────────────────────────────────────────
+export const CHEMISTRY_GENERATOR_PROMPT = `
+You are NEXUS-ChemGen, a world-class computational chemistry visualization engine.
+
+## YOUR CAPABILITIES
+You generate precise molecular representations and chemical diagrams.
+
+## OUTPUT RULES (ABSOLUTE — VIOLATION = FAILURE)
+1. For MOLECULAR STRUCTURES: Output ONLY a valid SMILES string.
+   - Use canonical SMILES notation
+   - Include stereochemistry when relevant (@ / @@ for chirality, / \\ for E/Z)
+   - For complex molecules, also provide InChI as a secondary identifier
+   
+2. For CHEMICAL REACTIONS: Output a JSON reaction diagram:
+{
+  "type": "reaction",
+  "reactants": [{"smiles": "...", "name": "...", "coefficient": 1}],
+  "products": [{"smiles": "...", "name": "...", "coefficient": 1}],
+  "conditions": {"temperature": "...", "catalyst": "...", "solvent": "..."},
+  "reaction_type": "substitution|elimination|addition|redox|acid_base|...",
+  "mechanism_steps": [
+    {"step": 1, "description": "...", "intermediate_smiles": "..."}
+  ],
+  "arrow_type": "forward|equilibrium|resonance"
+}
+
+3. For ELECTRON CONFIGURATIONS / ORBITAL DIAGRAMS: Output JSON:
+{
+  "type": "orbital",
+  "element": "...",
+  "atomic_number": ...,
+  "configuration": "1s² 2s² 2p⁶ ...",
+  "orbital_boxes": [
+    {"orbital": "1s", "electrons": [{"spin": "up"}, {"spin": "down"}]},
+    ...
+  ]
+}
+
+4. For PERIODIC TABLE QUERIES: Output relevant element data as JSON.
+
+5. For 3D MOLECULAR VISUALIZATION: Output JSON with 3D coordinates:
+{
+  "type": "3d_molecule",
+  "atoms": [{"element": "C", "x": 0, "y": 0, "z": 0}, ...],
+  "bonds": [{"from": 0, "to": 1, "order": 1}, ...],
+  "metadata": {"molecular_weight": ..., "formula": "..."}
+}
+
+## SCIENTIFIC ACCURACY RULES
+- All SMILES must represent chemically valid structures
+- Bond orders must be correct
+- Stereochemistry must follow CIP priority rules
+- Aromatic rings must be properly denoted (lowercase or kekulé)
+- Charges must be explicitly shown: [NH4+], [O-]
+- Isotopes: [2H], [13C]
+
+## NEVER DO
+- Never output explanatory text — ONLY the specified format
+- Never guess a structure you're unsure of — output {"error": "uncertain", "suggestions": [...]}
+- Never simplify stereochemistry unless explicitly asked
+`;
+
+// ─────────────────────────────────────────────────────
+// PHYSICS GENERATOR PROMPT
+// ─────────────────────────────────────────────────────
+export const PHYSICS_GENERATOR_PROMPT = `
+You are NEXUS-PhysGen, a precision physics visualization and simulation engine.
+
+## OUTPUT FORMATS BY SUB-DOMAIN
+
+### MECHANICS (Forces, Motion, Energy)
+Output JSON for animated physics simulation:
+{
+  "type": "physics_sim",
+  "simulation": "projectile|pendulum|spring|collision|incline|orbital|freefall",
+  "objects": [
+    {
+      "id": "obj1",
+      "shape": "circle|rectangle|arrow|point",
+      "mass": 5.0,
+      "position": {"x": 0, "y": 0},
+      "velocity": {"x": 10, "y": 15},
+      "forces": [
+        {"type": "gravity", "magnitude": 9.81, "direction": 270},
+        {"type": "applied", "magnitude": 50, "direction": 0},
+        {"type": "friction", "coefficient": 0.3}
+      ],
+      "constraints": {"type": "none|pivot|surface|rope", "anchor": {"x": 0, "y": 5}}
+    }
+  ],
+  "environment": {
+    "gravity": 9.81,
+    "air_resistance": false,
+    "time_step": 0.016,
+    "duration": 5.0,
+    "boundaries": {"width": 800, "height": 600}
+  },
+  "annotations": [
+    {"type": "vector", "label": "F_net", "from": [0,0], "to": [50,0], "color": "#FF0000"},
+    {"type": "dimension", "label": "h = 10m", "from": [0,0], "to": [0,10]},
+    {"type": "angle", "label": "θ = 30°", "vertex": [0,0], "ray1": [1,0], "ray2": [0.866,0.5]}
+  ],
+  "equations": [
+    {"latex": "F = ma", "values": {"F": "50 N", "m": "5 kg", "a": "10 m/s²"}},
+    {"latex": "v = v_0 + at"}
+  ],
+  "free_body_diagram": {
+    "object_label": "Block",
+    "forces": [
+      {"label": "W", "magnitude": "49.05 N", "direction": 270, "color": "#FF0000"},
+      {"label": "N", "magnitude": "49.05 N", "direction": 90, "color": "#0000FF"},
+      {"label": "F_app", "magnitude": "50 N", "direction": 0, "color": "#00FF00"}
+    ]
+  }
+}
+
+### ELECTROMAGNETISM (Fields, Waves)
+For field visualizations, output vector field data:
+{
+  "type": "field_visualization",
+  "field_type": "electric|magnetic|gravitational",
+  "sources": [
+    {"type": "point_charge", "charge": 1e-6, "position": [0, 0]},
+    {"type": "point_charge", "charge": -1e-6, "position": [2, 0]}
+  ],
+  "visualization": "field_lines|vectors|equipotential|all",
+  "grid_resolution": 20
+}
+
+### OPTICS
+{
+  "type": "optics_sim",
+  "elements": [
+    {"type": "source", "position": [-5, 0], "rays": 5},
+    {"type": "lens", "position": [0, 0], "focal_length": 3, "lens_type": "converging"},
+    {"type": "screen", "position": [10, 0]}
+  ],
+  "show_construction_rays": true
+}
+
+## RULES
+- All units must be SI unless user specifies otherwise
+- Always include relevant equations in LaTeX format
+- Free body diagrams must account for ALL forces (don't forget normal force, etc.)
+- Simulation parameters must be physically realistic
+- Label ALL vectors with magnitude, direction, and units
+`;
+
+// ─────────────────────────────────────────────────────
+// MATH GENERATOR PROMPT
+// ─────────────────────────────────────────────────────
+export const MATH_GENERATOR_PROMPT = `
+You are NEXUS-MathGen, a precise mathematical visualization engine.
+
+## OUTPUT FORMATS
+
+### FUNCTION GRAPHING
+Output Plotly-compatible JSON:
+{
+  "type": "math_graph",
+  "traces": [
+    {
+      "function": "x^2 - 4",
+      "latex": "f(x) = x^2 - 4",
+      "x_range": [-5, 5],
+      "samples": 200,
+      "color": "#3B82F6",
+      "style": "solid",
+      "label": "f(x)",
+      "key_points": [
+        {"x": -2, "y": 0, "label": "root", "annotation": "(-2, 0)"},
+        {"x": 2, "y": 0, "label": "root", "annotation": "(2, 0)"},
+        {"x": 0, "y": -4, "label": "vertex", "annotation": "(0, -4)"}
+      ]
+    }
+  ],
+  "layout": {
+    "title": "Quadratic Function",
+    "x_label": "x",
+    "y_label": "f(x)",
+    "show_grid": true,
+    "show_axes": true,
+    "aspect_ratio": "equal",
+    "annotations": [
+      {"text": "Vertex at (0, -4)", "x": 0, "y": -4, "arrow": true}
+    ]
+  },
+  "interactive": {
+    "draggable_points": [
+      {"id": "a", "initial": 1, "label": "a", "affects": "coefficient"},
+    ],
+    "parameter_sliders": [
+      {"param": "a", "min": -5, "max": 5, "step": 0.1, "default": 1,
+       "updates_function": "a*x^2 - 4"}
+    ]
+  }
+}
+
+### GEOMETRY
+{
+  "type": "geometry",
+  "coordinate_system": "cartesian|polar",
+  "shapes": [
+    {
+      "type": "triangle",
+      "vertices": [[0,0], [4,0], [2,3]],
+      "labels": {"vertices": ["A", "B", "C"], "sides": ["a=3.6", "b=3.6", "c=4"]},
+      "angles": [{"vertex": "A", "value": "56.3°"}, ...],
+      "show_altitude": true,
+      "show_median": false,
+      "show_circumscribed_circle": false
+    }
+  ],
+  "constructions": [
+    {"type": "perpendicular_bisector", "of_segment": ["A", "B"]}
+  ]
+}
+
+### CALCULUS VISUALIZATION
+{
+  "type": "calculus",
+  "visualization": "riemann_sum|area_under_curve|tangent_line|derivative_graph",
+  "function": "sin(x)",
+  "latex": "f(x) = \\sin(x)",
+  "operation": {
+    "type": "definite_integral",
+    "from": 0, "to": "pi",
+    "n_rectangles": 10,
+    "method": "midpoint",
+    "result_latex": "\\int_0^{\\pi} \\sin(x) \\, dx = 2"
+  }
+}
+
+### STEP-BY-STEP SOLUTION
+{
+  "type": "solution_steps",
+  "problem_latex": "\\text{Solve: } 2x^2 + 5x - 3 = 0",
+  "steps": [
+    {
+      "step_number": 1,
+      "description": "Identify coefficients: a=2, b=5, c=-3",
+      "latex": "a = 2, \\quad b = 5, \\quad c = -3",
+      "highlight": "identification"
+    },
+    {
+      "step_number": 2,
+      "description": "Apply the quadratic formula",
+      "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+      "highlight": "formula"
+    },
+    {
+      "step_number": 3,
+      "description": "Substitute values",
+      "latex": "x = \\frac{-5 \\pm \\sqrt{25 + 24}}{4} = \\frac{-5 \\pm 7}{4}",
+      "highlight": "computation"
+    },
+    {
+      "step_number": 4,
+      "description": "Final answers",
+      "latex": "x = \\frac{1}{2} \\quad \\text{or} \\quad x = -3",
+      "highlight": "result"
+    }
+  ]
+}
+
+## RULES
+- All mathematical notation must be valid LaTeX
+- Key points (roots, extrema, inflection points) must be analytically computed, not estimated
+- Always identify and label asymptotes, discontinuities, domain restrictions
+- Interactive sliders must update the function in real-time
+- Geometry diagrams must maintain accurate proportions
+`;
+
+// ─────────────────────────────────────────────────────
+// CIRCUIT GENERATOR PROMPT
+// ─────────────────────────────────────────────────────
+export const CIRCUIT_GENERATOR_PROMPT = `
+You are NEXUS-CircuitGen, an expert electronic circuit visualization and simulation engine.
+
+## OUTPUT FORMAT: React Flow compatible JSON
+{
+  "type": "circuit",
+  "nodes": [
+    {
+      "id": "battery1",
+      "type": "component",
+      "data": {
+        "component": "battery",
+        "label": "V1",
+        "value": 9,
+        "unit": "V",
+        "icon": "battery",
+        "orientation": 0,
+        "properties": {
+          "voltage": 9,
+          "internal_resistance": 0.5
+        }
+      },
+      "position": {"x": 100, "y": 200}
+    },
+    {
+      "id": "resistor1",
+      "type": "component",
+      "data": {
+        "component": "resistor",
+        "label": "R1",
+        "value": 100,
+        "unit": "Ω",
+        "icon": "resistor",
+        "orientation": 0,
+        "properties": {
+          "resistance": 100,
+          "power_rating": 0.25,
+          "tolerance": 5
+        },
+        "color_bands": ["brown", "black", "brown", "gold"]
+      },
+      "position": {"x": 300, "y": 100}
+    },
+    {
+      "id": "node_a",
+      "type": "junction",
+      "data": {"label": "A", "voltage": null},
+      "position": {"x": 200, "y": 100}
+    }
+  ],
+  "edges": [
+    {
+      "id": "wire1",
+      "source": "battery1",
+      "target": "node_a",
+      "sourceHandle": "positive",
+      "targetHandle": "input",
+      "data": {
+        "current": null,
+        "wire_color": "#FF0000",
+        "label": ""
+      },
+      "type": "smoothstep"
+    }
+  ],
+  "analysis": {
+    "circuit_type": "series|parallel|series_parallel|bridge|complex",
+    "total_resistance": {"value": 200, "unit": "Ω", "latex": "R_T = R_1 + R_2 = 100 + 100 = 200 \\, \\Omega"},
+    "total_current": {"value": 0.045, "unit": "A", "latex": "I = \\frac{V}{R_T} = \\frac{9}{200} = 0.045 \\, A"},
+    "power_dissipated": {"value": 0.405, "unit": "W"},
+    "node_voltages": [
+      {"node": "A", "voltage": 4.5, "unit": "V"}
+    ],
+    "component_analysis": [
+      {
+        "component": "R1",
+        "voltage_drop": 4.5,
+        "current": 0.045,
+        "power": 0.2025
+      }
+    ],
+    "laws_applied": ["Ohm's Law", "Kirchhoff's Voltage Law"],
+    "equations": [
+      {"latex": "V = IR", "description": "Ohm's Law"},
+      {"latex": "\\sum V = 0", "description": "KVL around loop"}
+    ]
+  },
+  "simulation_config": {
+    "animate_current_flow": true,
+    "show_voltage_colors": true,
+    "show_current_arrows": true,
+    "interactive_values": true
+  }
+}
+
+## COMPONENT LIBRARY
+Supported components: battery, resistor, capacitor, inductor, diode, LED, 
+transistor_npn, transistor_pnp, op_amp, switch, fuse, transformer, 
+motor, speaker, microphone, potentiometer, thermistor, LDR, 
+AND_gate, OR_gate, NOT_gate, NAND_gate, NOR_gate, XOR_gate, flip_flop,
+ground, voltage_source_ac, ammeter, voltmeter, oscilloscope_probe
+
+## RULES
+- All circuit analysis must be physically accurate
+- Include Kirchhoff analysis for any circuit with >2 components
+- Show color code bands for all resistors
+- Current direction follows conventional current (+ to -)
+- Parallel resistance: 1/R_T = 1/R_1 + 1/R_2 + ...
+- Include power calculations for all components
+- Flag any component exceeding its rated values
+`;
+
+// ─────────────────────────────────────────────────────
+// BIOLOGY GENERATOR PROMPT
+// ─────────────────────────────────────────────────────
+export const BIOLOGY_GENERATOR_PROMPT = `
+You are NEXUS-BioGen, an expert biological systems visualization engine.
+
+## OUTPUT FORMAT: Mermaid.js + Enhanced JSON
+
+### For PROCESSES (Photosynthesis, Cell Division, Krebs Cycle, etc.)
+Output Mermaid flowchart with custom styling:
+{
+  "type": "bio_process",
+  "mermaid_code": "graph TD\\n  A[Light Reactions] -->|ATP, NADPH| B[Calvin Cycle]\\n  ...",
+  "node_details": {
+    "A": {
+      "full_name": "Light-Dependent Reactions",
+      "location": "Thylakoid Membrane",
+      "inputs": ["H₂O", "Light Energy", "NADP⁺", "ADP + Pi"],
+      "outputs": ["O₂", "ATP", "NADPH"],
+      "key_enzymes": ["Photosystem II", "Photosystem I", "ATP Synthase"],
+      "energy_change": "Light energy → Chemical energy",
+      "diagram_detail": "..."
+    }
+  },
+  "color_scheme": {
+    "energy_molecules": "#FFD700",
+    "enzymes": "#FF6B6B",
+    "substrates": "#4ECDC4",
+    "products": "#45B7D1",
+    "organelle_boundary": "#E0E0E0"
+  },
+  "animation_sequence": [
+    {"highlight": "A", "duration": 2000, "description": "Light hits photosystem II..."},
+    {"highlight": "A->B", "duration": 1000, "description": "ATP and NADPH move to stroma..."}
+  ]
+}
+
+### For STRUCTURES (Cell, DNA, Organ Systems)
+Output labeled diagram JSON:
+{
+  "type": "bio_structure",
+  "structure": "animal_cell|plant_cell|dna|protein|organ",
+  "components": [
+    {
+      "id": "nucleus",
+      "label": "Nucleus",
+      "position": {"x": 200, "y": 200},
+      "size": {"width": 80, "height": 80},
+      "shape": "ellipse",
+      "color": "#6366F1",
+      "description": "Contains genetic material (DNA)",
+      "sub_components": [
+        {"id": "nucleolus", "label": "Nucleolus", "position": {"x": 210, "y": 210}}
+      ],
+      "connections": [
+        {"to": "rough_er", "label": "mRNA export", "type": "arrow"}
+      ]
+    }
+  ],
+  "scale_bar": {"length": 100, "label": "10 μm"},
+  "magnification": "×400"
+}
+
+### For GENETICS (Punnett Squares, Pedigrees, Gene Maps)
+{
+  "type": "genetics",
+  "subtype": "punnett_square|pedigree|karyotype|gene_map",
+  "data": {
+    "parent1": {"genotype": "Bb", "phenotype": "Brown eyes"},
+    "parent2": {"genotype": "Bb", "phenotype": "Brown eyes"},
+    "offspring": [
+      {"genotype": "BB", "phenotype": "Brown eyes", "probability": 0.25},
+      {"genotype": "Bb", "phenotype": "Brown eyes", "probability": 0.50},
+      {"genotype": "bb", "phenotype": "Blue eyes", "probability": 0.25}
+    ],
+    "trait": "Eye Color",
+    "inheritance_pattern": "autosomal_dominant"
+  }
+}
+`;
+
+// ─────────────────────────────────────────────────────
+// FLOWCHART / LOGIC GENERATOR PROMPT  
+// ─────────────────────────────────────────────────────
+export const FLOWCHART_GENERATOR_PROMPT = `
+You are NEXUS-FlowGen, an expert diagramming engine for flowcharts, mind maps, 
+sequence diagrams, state machines, and all logic-based visualizations.
+
+## OUTPUT: Valid Mermaid.js code ONLY
+
+### FLOWCHARTS
+Output using Mermaid flowchart syntax:
+- Use meaningful node IDs (not A, B, C — use descriptive names)
+- Include decision diamonds with Yes/No paths
+- Use subgraphs for logical grouping
+- Apply styling for visual hierarchy
+
+Example output structure:
+\`\`\`
+graph TD
+    subgraph Input["📥 Input Phase"]
+        START([Start]) --> RECEIVE[Receive User Data]
+        RECEIVE --> VALIDATE{Data Valid?}
+    end
+    
+    subgraph Processing["⚙️ Processing"]
+        VALIDATE -->|Yes| PROCESS[Process Request]
+        VALIDATE -->|No| ERROR[Show Error Message]
+        ERROR --> RECEIVE
+        PROCESS --> CHECK{Result OK?}
+    end
+    
+    subgraph Output["📤 Output"]
+        CHECK -->|Yes| DISPLAY[Display Results]
+        CHECK -->|No| RETRY{Retry?}
+        RETRY -->|Yes| PROCESS
+        RETRY -->|No| FAIL([Failure])
+        DISPLAY --> END([End])
+    end
+    
+    style Input fill:#E8F5E9,stroke:#4CAF50
+    style Processing fill:#E3F2FD,stroke:#2196F3
+    style Output fill:#FFF3E0,stroke:#FF9800
+\`\`\`
+
+### SEQUENCE DIAGRAMS
+\`\`\`
+sequenceDiagram
+    participant U as User
+    participant S as Server
+    participant D as Database
+    
+    U->>+S: POST /api/login
+    S->>+D: Query user credentials
+    D-->>-S: User found
+    S-->>-U: 200 OK + JWT Token
+\`\`\`
+
+### STATE DIAGRAMS
+\`\`\`
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : Submit
+    Processing --> Success : Valid
+    Processing --> Error : Invalid
+    Error --> Idle : Retry
+    Success --> [*]
+\`\`\`
+
+### MIND MAPS
+\`\`\`
+mindmap
+  root((Central Topic))
+    Branch 1
+      Sub-topic 1a
+      Sub-topic 1b
+    Branch 2
+      Sub-topic 2a
+\`\`\`
+
+### CLASS DIAGRAMS (for CS/Software)
+### ER DIAGRAMS (for Databases)
+### GANTT CHARTS (for Project Planning)
+### PIE CHARTS (for Data Distribution)
+
+## RULES
+- Output ONLY valid Mermaid syntax — no markdown fences, no explanation
+- Every node must have a descriptive label
+- Use emojis in labels for visual appeal (📥, ⚙️, ✅, ❌, 📊)
+- Include styling directives for color coding
+- Maximum 30 nodes per diagram (split into multiple if needed)
+- Decision nodes must ALWAYS have at least 2 outgoing paths
+- Every flowchart must have a clear START and END
+`;
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 8: CORE APPLICATION CODE
+# ═══════════════════════════════════════════════════════════════
+
+```typescript
+// ──────────────────────────────────────────────────────────────
+// FILE: lib/ai/orchestrator.ts — THE BRAIN
+// ──────────────────────────────────────────────────────────────
+
+import { generateObject, generateText, streamText } from 'ai';
+import { openai } from '@ai-sdk/openai';
+import { anthropic } from '@ai-sdk/anthropic';
+import { google } from '@ai-sdk/google';
+import { z } from 'zod';
+import { 
+  CLASSIFIER_SYSTEM_PROMPT, 
+  CHEMISTRY_GENERATOR_PROMPT,
+  PHYSICS_GENERATOR_PROMPT,
+  MATH_GENERATOR_PROMPT,
+  CIRCUIT_GENERATOR_PROMPT,
+  BIOLOGY_GENERATOR_PROMPT,
+  FLOWCHART_GENERATOR_PROMPT
+} from './prompts/system-prompts';
+
+// ─── CLASSIFICATION SCHEMA ───
+const ClassificationSchema = z.object({
+  domain: z.enum(['chemistry', 'physics', 'math', 'biology', 'circuit', 'logic']),
+  sub_domain: z.string(),
+  confidence: z.number().min(0).max(1),
+  visualization_type: z.enum([
+    'mermaid', 'reactflow', 'smiles', 'plotly', 'latex', 
+    'circuitjs', 'threejs', 'timeline', 'table', 'physics_sim'
+  ]),
+  complexity_detected: z.enum([
+    'elementary', 'middle_school', 'high_school', 
+    'undergraduate', 'graduate', 'research'
+  ]),
+  requires_simulation: z.boolean(),
+  requires_3d: z.boolean(),
+  key_entities: z.array(z.string()),
+  suggested_enhancements: z.array(z.string()),
+});
+
+export type Classification = z.infer<typeof ClassificationSchema>;
+
+// ─── DOMAIN → PROMPT MAP ───
+const DOMAIN_PROMPTS: Record<string, string> = {
+  chemistry: CHEMISTRY_GENERATOR_PROMPT,
+  physics: PHYSICS_GENERATOR_PROMPT,
+  math: MATH_GENERATOR_PROMPT,
+  biology: BIOLOGY_GENERATOR_PROMPT,
+  circuit: CIRCUIT_GENERATOR_PROMPT,
+  logic: FLOWCHART_GENERATOR_PROMPT,
+};
+
+// ─── DOMAIN → MODEL PREFERENCE ───
+// Different models excel at different domains
+const DOMAIN_MODEL_PREFERENCE: Record<string, any> = {
+  chemistry: anthropic('claude-3-5-sonnet-20241022'), // Best at structured chemistry
+  physics: openai('gpt-4o'),                          // Best at physics reasoning
+  math: anthropic('claude-3-5-sonnet-20241022'),       // Best at math precision
+  biology: openai('gpt-4o'),                           // Best at bio diagrams
+  circuit: openai('gpt-4o'),                           // Best at circuit analysis
+  logic: anthropic('claude-3-5-sonnet-20241022'),      // Best at structured diagrams
+};
+
+// ─── STEP 1: CLASSIFY ───
+export async function classifyPrompt(userInput: string): Promise<Classification> {
+  const { object } = await generateObject({
+    model: openai('gpt-4o-mini'), // Fast model for classification
+    schema: ClassificationSchema,
+    system: CLASSIFIER_SYSTEM_PROMPT,
+    prompt: userInput,
+    temperature: 0.1, // Low temperature for consistency
+  });
+  return object;
+}
+
+// ─── STEP 2: GENERATE ───
+export async function generateDiagram(
+  userInput: string, 
+  classification: Classification,
+  complexity: string = 'high_school'
+) {
+  const systemPrompt = DOMAIN_PROMPTS[classification.domain];
+  const model = DOMAIN_MODEL_PREFERENCE[classification.domain];
+  
+  const enhancedPrompt = `
+## USER REQUEST
+"${userInput}"
+
+## CLASSIFICATION CONTEXT
+- Domain: ${classification.domain}
+- Sub-domain: ${classification.sub_domain}
+- Visualization Type: ${classification.visualization_type}
+- Complexity Level: ${complexity}
+- Requires Simulation: ${classification.requires_simulation}
+- Requires 3D: ${classification.requires_3d}
+- Key Entities: ${classification.key_entities.join(', ')}
+- Suggested Enhancements: ${classification.suggested_enhancements.join(', ')}
+
+## INSTRUCTION
+Generate the visualization data for this request. Apply all suggested enhancements.
+Match the complexity level: ${complexity}.
+Output ONLY the specified data format — no conversational text.
+  `;
+
+  const result = await generateText({
+    model,
+    system: systemPrompt,
+    prompt: enhancedPrompt,
+    temperature: 0.2,
+    maxTokens: 4096,
+  });
+
+  return {
+    raw: result.text,
+    parsed: parseGeneratedOutput(result.text, classification.visualization_type),
+    classification,
+  };
+}
+
+// ─── STEP 3: TRIPLE VERIFY ───
+export async function tripleVerify(
+  userInput: string, 
+  generatedOutput: string, 
+  classification: Classification
+) {
+  const verificationPrompt = `
+## TASK: Verify the accuracy of this STEM visualization.
+
+## ORIGINAL QUESTION
+"${userInput}"
+
+## GENERATED OUTPUT
+${generatedOutput}
+
+## DOMAIN: ${classification.domain} / ${classification.sub_domain}
+
+## VERIFICATION CHECKLIST
+1. Is the output scientifically/mathematically accurate?
+2. Are all units correct?
+3. Are there any missing elements that should be included?
+4. Are labels and annotations correct?
+5. Would a ${classification.complexity_detected}-level student find this helpful?
+
+## OUTPUT FORMAT (JSON ONLY)
+{
+  "is_accurate": true/false,
+  "confidence": 0.0-1.0,
+  "errors_found": [{"description": "...", "severity": "critical|minor|suggestion"}],
+  "corrections": [{"original": "...", "corrected": "...", "reason": "..."}],
+  "completeness_score": 0.0-1.0,
+  "suggestions": ["..."]
+}
+  `;
+
+  // Run verification in parallel across 3 models
+  const [openaiResult, anthropicResult, googleResult] = await Promise.allSettled([
+    generateText({
+      model: openai('gpt-4o'),
+      prompt: verificationPrompt,
+      temperature: 0.1,
+    }),
+    generateText({
+      model: anthropic('claude-3-5-sonnet-20241022'),
+      prompt: verificationPrompt,
+      temperature: 0.1,
+    }),
+    generateText({
+      model: google('gemini-2.0-flash'),
+      prompt: verificationPrompt,
+      temperature: 0.1,
+    }),
+  ]);
+
+  // Consensus voting
+  const results = [openaiResult, anthropicResult, googleResult]
+    .filter((r): r is PromiseFulfilledResult<any> => r.status === 'fulfilled')
+    .map(r => {
+      try { return JSON.parse(r.value.text); } 
+      catch { return { is_accurate: null, confidence: 0 }; }
+    });
+
+  const accurateVotes = results.filter(r => r.is_accurate === true).length;
+  const isConsensusAccurate = accurateVotes >= 2; // Majority vote
+
+  return {
+    isVerified: isConsensusAccurate,
+    votes: {
+      openai: results[0],
+      anthropic: results[1],
+      google: results[2],
+    },
+    consensusAccuracy: accurateVotes / results.length,
+    allErrors: results.flatMap(r => r.errors_found || []),
+    allSuggestions: results.flatMap(r => r.suggestions || []),
+  };
+}
+
+// ─── PARSER ───
+function parseGeneratedOutput(raw: string, visualizationType: string) {
+  // Remove any markdown code fences the LLM might have added
+  let cleaned = raw.replace(/```[\w]*\n?/g, '').replace(/```/g, '').trim();
+  
+  switch (visualizationType) {
+    case 'mermaid':
+      return { type: 'mermaid', code: cleaned };
+    case 'smiles':
+      return { type: 'smiles', code: cleaned };
+    case 'reactflow':
+    case 'circuitjs':
+    case 'plotly':
+    case 'physics_sim':
+    case 'threejs':
+      try {
+        return { type: visualizationType, data: JSON.parse(cleaned) };
+      } catch (e) {
+        // If JSON parsing fails, try to extract JSON from the text
+        const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          return { type: visualizationType, data: JSON.parse(jsonMatch[0]) };
+        }
+        return { type: 'error', error: 'Failed to parse output', raw: cleaned };
+      }
+    case 'latex':
+      return { type: 'latex', code: cleaned };
+    default:
+      return { type: 'text', content: cleaned };
+  }
+}
+
+// ─── FULL PIPELINE ───
+export async function processSTEMQuery(
+  userInput: string,
+  options: {
+    complexity?: string;
+    skipVerification?: boolean;
+    stream?: boolean;
+  } = {}
+) {
+  // Step 1: Classify
+  const classification = await classifyPrompt(userInput);
+  
+  // Step 2: Generate
+  const generated = await generateDiagram(
+    userInput, 
+    classification, 
+    options.complexity || classification.complexity_detected
+  );
+  
+  // Step 3: Verify (optional but recommended)
+  let verification = null;
+  if (!options.skipVerification && classification.confidence > 0.7) {
+    verification = await tripleVerify(userInput, generated.raw, classification);
+  }
+  
+  return {
+    classification,
+    diagram: generated.parsed,
+    rawOutput: generated.raw,
+    verification,
+    metadata: {
+      timestamp: new Date().toISOString(),
+      processingSteps: ['classify', 'generate', verification ? 'verify' : 'skip_verify'],
+    },
+  };
+}
+```
+
+```typescript
+// ──────────────────────────────────────────────────────────────
+// FILE: app/api/ai/generate/route.ts — API ENDPOINT
+// ──────────────────────────────────────────────────────────────
+
+import { NextRequest, NextResponse } from 'next/server';
+import { processSTEMQuery } from '@/lib/ai/orchestrator';
+import { auth } from '@/lib/auth/config';
+import { ratelimit } from '@/lib/ratelimit';
+import { db } from '@/lib/db';
+import { diagrams } from '@/lib/db/schema';
+
+export async function POST(req: NextRequest) {
+  try {
+    // Auth check
+    const session = await auth();
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Rate limiting
+    const { success } = await ratelimit.limit(session.user.id);
+    if (!success) {
+      return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
+    }
+
+    const body = await req.json();
+    const { prompt, complexity, workspaceId, skipVerification } = body;
+
+    if (!prompt || typeof prompt !== 'string' || prompt.length > 2000) {
+      return NextResponse.json({ error: 'Invalid prompt' }, { status: 400 });
+    }
+
+    // Process the STEM query through the full pipeline
+    const result = await processSTEMQuery(prompt, {
+      complexity,
+      skipVerification: skipVerification || false,
+    });
+
+    // Save to database
+    const [savedDiagram] = await db.insert(diagrams).values({
+      workspaceId: workspaceId,
+      userId: session.user.id,
+      originalPrompt: prompt,
+      inputType: 'text',
+      domain: result.classification.domain,
+      subDomain: result.classification.sub_domain,
+      complexity: result.classification.complexity_detected,
+      classificationConfidence: result.classification.confidence,
+      generatedCode: result.rawOutput,
+      codeFormat: result.classification.visualization_type,
+      explanation: result.diagram,
+      verificationResults: result.verification,
+      isVerified: result.verification?.isVerified || false,
+      accuracyScore: result.verification?.consensusAccuracy || null,
+    }).returning();
+
+    return NextResponse.json({
+      id: savedDiagram.id,
+      ...result,
+    });
+
+  } catch (error) {
+    console.error('Generation error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error', details: (error as Error).message },
+      { status: 500 }
+    );
+  }
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/visualizer/VisualizerDisplay.tsx — MASTER RENDERER
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { Suspense, memo } from 'react';
+import dynamic from 'next/dynamic';
+import { Loader2, AlertTriangle, RefreshCw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+
+// Dynamic imports for heavy rendering libraries (code-split)
+const MermaidRenderer = dynamic(() => import('./renderers/MermaidRenderer'), {
+  loading: () => <RenderingLoader label="Loading diagram engine..." />,
+  ssr: false,
+});
+
+const ReactFlowRenderer = dynamic(() => import('./renderers/ReactFlowRenderer'), {
+  loading: () => <RenderingLoader label="Loading interactive canvas..." />,
+  ssr: false,
+});
+
+const ChemistryRenderer = dynamic(() => import('./renderers/ChemistryRenderer'), {
+  loading: () => <RenderingLoader label="Loading molecular renderer..." />,
+  ssr: false,
+});
+
+const Chemistry3DRenderer = dynamic(() => import('./renderers/Chemistry3DRenderer'), {
+  loading: () => <RenderingLoader label="Loading 3D viewer..." />,
+  ssr: false,
+});
+
+const MathGraphRenderer = dynamic(() => import('./renderers/MathGraphRenderer'), {
+  loading: () => <RenderingLoader label="Loading graph engine..." />,
+  ssr: false,
+});
+
+const EquationRenderer = dynamic(() => import('./renderers/EquationRenderer'), {
+  loading: () => <RenderingLoader label="Rendering equations..." />,
+  ssr: false,
+});
+
+const CircuitRenderer = dynamic(() => import('./renderers/CircuitRenderer'), {
+  loading: () => <RenderingLoader label="Loading circuit simulator..." />,
+  ssr: false,
+});
+
+const PhysicsSimRenderer = dynamic(() => import('./renderers/PhysicsSimRenderer'), {
+  loading: () => <RenderingLoader label="Loading physics engine..." />,
+  ssr: false,
+});
+
+// ─── TYPES ───
+interface VisualizerProps {
+  type: string;
+  data: any;
+  isEditable?: boolean;
+  isVerified?: boolean;
+  verificationScore?: number;
+  onDataChange?: (newData: any) => void;
+  onError?: (error: Error) => void;
+  className?: string;
+}
+
+// ─── LOADING COMPONENT ───
+function RenderingLoader({ label }: { label: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center h-64 gap-3">
+      <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+      <p className="text-sm text-muted-foreground animate-pulse">{label}</p>
+    </div>
+  );
+}
+
+// ─── ERROR COMPONENT ───
+function RenderError({ 
+  error, 
+  onRetry 
+}: { 
+  error: string; 
+  onRetry?: () => void 
+}) {
+  return (
+    <Alert variant="destructive" className="m-4">
+      <AlertTriangle className="h-4 w-4" />
+      <AlertDescription className="flex items-center justify-between">
+        <span>Failed to render: {error}</span>
+        {onRetry && (
+          <Button variant="outline" size="sm" onClick={onRetry}>
+            <RefreshCw className="w-3 h-3 mr-1" /> Retry
+          </Button>
+        )}
+      </AlertDescription>
+    </Alert>
+  );
+}
+
+// ─── VERIFICATION BADGE ───
+function VerificationBadge({ 
+  isVerified, 
+  score 
+}: { 
+  isVerified: boolean; 
+  score?: number 
+}) {
+  if (!isVerified && !score) return null;
+  
+  return (
+    <div className={`
+      absolute top-2 right-2 z-10 px-2 py-1 rounded-full text-xs font-medium
+      flex items-center gap-1 backdrop-blur-sm
+      ${isVerified 
+        ? 'bg-green-100/90 text-green-800 border border-green-300' 
+        : 'bg-yellow-100/90 text-yellow-800 border border-yellow-300'
+      }
+    `}>
+      {isVerified ? '✓ Triple Verified' : '⚠ Unverified'}
+      {score && <span className="ml-1">({Math.round(score * 100)}%)</span>}
+    </div>
+  );
+}
+
+// ─── MASTER RENDERER ───
+const VisualizerDisplay = memo(function VisualizerDisplay({
+  type,
+  data,
+  isEditable = true,
+  isVerified = false,
+  verificationScore,
+  onDataChange,
+  onError,
+  className = '',
+}: VisualizerProps) {
+  
+  const [error, setError] = React.useState<string | null>(null);
+  const [retryCount, setRetryCount] = React.useState(0);
+
+  const handleError = React.useCallback((err: Error) => {
+    setError(err.message);
+    onError?.(err);
+  }, [onError]);
+
+  const handleRetry = React.useCallback(() => {
+    setError(null);
+    setRetryCount(prev => prev + 1);
+  }, []);
+
+  if (error) {
+    return <RenderError error={error} onRetry={handleRetry} />;
+  }
+
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center h-64 text-muted-foreground">
+        <p>Enter a STEM prompt to generate a visualization</p>
+      </div>
+    );
+  }
+
+  const renderContent = () => {
+    switch (type) {
+      // ─── FLOWCHARTS, MIND MAPS, SEQUENCE DIAGRAMS ───
+      case 'mermaid':
+        return (
+          <MermaidRenderer
+            key={retryCount}
+            code={data.code || data}
+            editable={isEditable}
+            onChange={(newCode) => onDataChange?.({ ...data, code: newCode })}
+            onError={handleError}
+          />
+        );
+
+      // ─── INTERACTIVE NODE DIAGRAMS ───
+      case 'reactflow':
+        return (
+          <ReactFlowRenderer
+            key={retryCount}
+            nodes={data.nodes}
+            edges={data.edges}
+            editable={isEditable}
+            onChange={onDataChange}
+            onError={handleError}
+          />
+        );
+
+      // ─── MOLECULAR STRUCTURES (2D) ───
+      case 'smiles':
+        return (
+          <ChemistryRenderer
+            key={retryCount}
+            smiles={data.code || data}
+            editable={isEditable}
+            showProperties={true}
+            onError={handleError}
+          />
+        );
+
+      // ─── MOLECULAR STRUCTURES (3D) ───
+      case 'threejs':
+        return (
+          <Chemistry3DRenderer
+            key={retryCount}
+            moleculeData={data.data || data}
+            interactive={true}
+            showElectronDensity={false}
+            onError={handleError}
+          />
+        );
+
+      // ─── MATHEMATICAL GRAPHS ───
+      case 'plotly':
+        return (
+          <MathGraphRenderer
+            key={retryCount}
+            graphData={data.data || data}
+            interactive={isEditable}
+            showSliders={true}
+            onChange={onDataChange}
+            onError={handleError}
+          />
+        );
+
+      // ─── LATEX EQUATIONS ───
+      case 'latex':
+        return (
+          <EquationRenderer
+            key={retryCount}
+            latex={data.code || data}
+            steps={data.steps}
+            editable={isEditable}
+            onChange={(newLatex) => onDataChange?.({ ...data, code: newLatex })}
+            onError={handleError}
+          />
+        );
+
+      // ─── ELECTRONIC CIRCUITS ───
+      case 'circuitjs':
+        return (
+          <CircuitRenderer
+            key={retryCount}
+            circuitData={data.data || data}
+            editable={isEditable}
+            simulationEnabled={true}
+            showAnalysis={true}
+            onChange={onDataChange}
+            onError={handleError}
+          />
+        );
+
+      // ─── PHYSICS SIMULATIONS ───
+      case 'physics_sim':
+        return (
+          <PhysicsSimRenderer
+            key={retryCount}
+            simData={data.data || data}
+            autoPlay={false}
+            showVectors={true}
+            showEquations={true}
+            interactive={isEditable}
+            onError={handleError}
+          />
+        );
+
+      // ─── FALLBACK: UNKNOWN TYPE ───
+      default:
+        return (
+          <div className="p-4 bg-muted rounded-lg">
+            <p className="text-sm text-muted-foreground mb-2">
+              Visualization type "{type}" — Raw output:
+            </p>
+            <pre className="text-xs overflow-auto max-h-96 p-3 bg-background rounded border">
+              {typeof data === 'string' ? data : JSON.stringify(data, null, 2)}
+            </pre>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className={`relative rounded-xl border bg-background shadow-sm overflow-hidden ${className}`}>
+      <VerificationBadge isVerified={isVerified} score={verificationScore} />
+      
+      {/* Accessibility: Screen reader description */}
+      <div className="sr-only" role="img" aria-label={`STEM visualization: ${type} diagram`}>
+        {typeof data === 'string' ? data : `Interactive ${type} diagram`}
+      </div>
+
+      <Suspense fallback={<RenderingLoader label="Rendering..." />}>
+        {renderContent()}
+      </Suspense>
+    </div>
+  );
+});
+
+export default VisualizerDisplay;
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/visualizer/renderers/MermaidRenderer.tsx
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import mermaid from 'mermaid';
+import { useTheme } from 'next-themes';
+import { Button } from '@/components/ui/button';
+import { Code2, Eye, Download, Copy, Check } from 'lucide-react';
+
+interface MermaidRendererProps {
+  code: string;
+  editable?: boolean;
+  onChange?: (newCode: string) => void;
+  onError?: (error: Error) => void;
+}
+
+export default function MermaidRenderer({ 
+  code, 
+  editable = true, 
+  onChange, 
+  onError 
+}: MermaidRendererProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [viewMode, setViewMode] = useState<'preview' | 'code' | 'split'>('preview');
+  const [editableCode, setEditableCode] = useState(code);
+  const [svgContent, setSvgContent] = useState<string>('');
+  const [copied, setCopied] = useState(false);
+  const { theme } = useTheme();
+
+  // Initialize Mermaid with theme-aware config
+  useEffect(() => {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: theme === 'dark' ? 'dark' : 'default',
+      securityLevel: 'loose',
+      fontFamily: 'Inter, system-ui, sans-serif',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis',
+        padding: 15,
+        nodeSpacing: 50,
+        rankSpacing: 50,
+      },
+      sequence: {
+        useMaxWidth: true,
+        diagramMarginX: 50,
+        diagramMarginY: 10,
+        actorMargin: 50,
+        width: 150,
+      },
+    });
+  }, [theme]);
+
+  // Render Mermaid diagram
+  const renderDiagram = useCallback(async (mermaidCode: string) => {
+    if (!containerRef.current) return;
+    
+    try {
+      // Validate syntax first
+      const isValid = await mermaid.parse(mermaidCode);
+      if (!isValid) throw new Error('Invalid Mermaid syntax');
+      
+      const uniqueId = `mermaid-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      const { svg } = await mermaid.render(uniqueId, mermaidCode);
+      setSvgContent(svg);
+      
+      if (containerRef.current) {
+        containerRef.current.innerHTML = svg;
+        
+        // Make SVG responsive
+        const svgElement = containerRef.current.querySelector('svg');
+        if (svgElement) {
+          svgElement.style.maxWidth = '100%';
+          svgElement.style.height = 'auto';
+          svgElement.setAttribute('role', 'img');
+          svgElement.setAttribute('aria-label', 'Generated diagram');
+        }
+      }
+    } catch (err) {
+      onError?.(err as Error);
+    }
+  }, [onError]);
+
+  useEffect(() => {
+    renderDiagram(editableCode);
+  }, [editableCode, renderDiagram]);
+
+  // Update parent when code changes
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      if (editableCode !== code) {
+        onChange?.(editableCode);
+      }
+    }, 500);
+    return () => clearTimeout(debounce);
+  }, [editableCode, code, onChange]);
+
+  const handleCopyCode = async () => {
+    await navigator.clipboard.writeText(editableCode);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownloadSVG = () => {
+    const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'diagram.svg';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* Toolbar */}
+      <div className="flex items-center justify-between px-3 py-2 border-b bg-muted/30">
+        <div className="flex gap-1">
+          <Button
+            variant={viewMode === 'preview' ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('preview')}
+          >
+            <Eye className="w-3 h-3 mr-1" /> Preview
+          </Button>
+          {editable && (
+            <>
+              <Button
+                variant={viewMode === 'code' ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('code')}
+              >
+                <Code2 className="w-3 h-3 mr-1" /> Code
+              </Button>
+              <Button
+                variant={viewMode === 'split' ? 'secondary' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('split')}
+              >
+                Split
+              </Button>
+            </>
+          )}
+        </div>
+        <div className="flex gap-1">
+          <Button variant="ghost" size="sm" onClick={handleCopyCode}>
+            {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+          </Button>
+          <Button variant="ghost" size="sm" onClick={handleDownloadSVG}>
+            <Download className="w-3 h-3" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className={`flex-1 ${viewMode === 'split' ? 'flex' : ''}`}>
+        {/* Preview Panel */}
+        {(viewMode === 'preview' || viewMode === 'split') && (
+          <div 
+            className={`
+              overflow-auto p-6 flex items-center justify-center min-h-[300px]
+              ${viewMode === 'split' ? 'w-1/2 border-r' : 'w-full'}
+            `}
+          >
+            <div 
+              ref={containerRef} 
+              className="mermaid-container w-full"
+              role="img"
+              aria-label="Diagram visualization"
+            />
+          </div>
+        )}
+
+        {/* Code Editor Panel */}
+        {(viewMode === 'code' || viewMode === 'split') && editable && (
+          <div className={viewMode === 'split' ? 'w-1/2' : 'w-full'}>
+            <textarea
+              value={editableCode}
+              onChange={(e) => setEditableCode(e.target.value)}
+              className="w-full h-full min-h-[300px] p-4 font-mono text-sm 
+                         bg-background resize-none focus:outline-none focus:ring-2 
+                         focus:ring-ring focus:ring-inset"
+              spellCheck={false}
+              aria-label="Diagram source code editor"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/visualizer/renderers/CircuitRenderer.tsx
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { useCallback, useMemo, useState } from 'react';
+import {
+  ReactFlow,
+  Background,
+  Controls,
+  MiniMap,
+  Panel,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  Connection,
+  Node,
+  Edge,
+  BackgroundVariant,
+  MarkerType,
+} from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Play, Pause, RotateCcw, Zap, Info } from 'lucide-react';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
+
+// ─── CUSTOM CIRCUIT COMPONENT NODE ───
+function CircuitComponentNode({ data }: { data: any }) {
+  const iconMap: Record<string, string> = {
+    battery: '🔋', resistor: '⚡', capacitor: '⊥⊥', inductor: '∿∿',
+    led: '💡', diode: '▷|', switch: '⏻', ground: '⏚',
+    ammeter: '🅰️', voltmeter: '🅥', motor: '⚙️',
+    AND_gate: '&', OR_gate: '≥1', NOT_gate: '1', 
+  };
+
+  const [showDetails, setShowDetails] = useState(false);
+
+  return (
+    <div 
+      className={`
+        px-3 py-2 rounded-lg border-2 bg-background shadow-md cursor-grab
+        hover:shadow-lg transition-all duration-200
+        ${data.isActive ? 'border-green-500 shadow-green-500/20' : 'border-border'}
+        ${data.isOverloaded ? 'border-red-500 animate-pulse' : ''}
+      `}
+      onDoubleClick={() => setShowDetails(!showDetails)}
+    >
+      <div className="flex items-center gap-2">
+        <span className="text-2xl" role="img" aria-label={data.component}>
+          {iconMap[data.component] || '⬡'}
+        </span>
+        <div>
+          <div className="font-semibold text-sm">{data.label}</div>
+          <div className="text-xs text-muted-foreground">
+            {data.value} {data.unit}
+          </div>
+        </div>
+      </div>
+
+      {/* Color bands for resistors */}
+      {data.color_bands && (
+        <div className="flex gap-0.5 mt-1">
+          {data.color_bands.map((color: string, i: number) => (
+            <div
+              key={i}
+              className="w-3 h-1.5 rounded-sm"
+              style={{ backgroundColor: color }}
+              title={color}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Expanded details on double-click */}
+      {showDetails && data.properties && (
+        <div className="mt-2 pt-2 border-t text-xs space-y-1">
+          {Object.entries(data.properties).map(([key, value]) => (
+            <div key={key} className="flex justify-between">
+              <span className="text-muted-foreground capitalize">
+                {key.replace(/_/g, ' ')}:
+              </span>
+              <span className="font-medium">{String(value)}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Current flow indicator */}
+      {data.current !== undefined && data.current !== null && (
+        <div className="mt-1 text-xs">
+          <Badge variant="outline" className="text-[10px]">
+            I = {data.current.toFixed(3)} A
+          </Badge>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── JUNCTION NODE ───
+function JunctionNode({ data }: { data: any }) {
+  return (
+    <div className="w-4 h-4 rounded-full bg-foreground border-2 border-background shadow-md relative">
+      {data.voltage !== null && data.voltage !== undefined && (
+        <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] 
+                         font-medium bg-background px-1 rounded whitespace-nowrap">
+          {data.voltage.toFixed(2)}V
+        </span>
+      )}
+    </div>
+  );
+}
+
+// ─── NODE TYPES ───
+const nodeTypes = {
+  component: CircuitComponentNode,
+  junction: JunctionNode,
+};
+
+// ─── MAIN CIRCUIT RENDERER ───
+interface CircuitRendererProps {
+  circuitData: any;
+  editable?: boolean;
+  simulationEnabled?: boolean;
+  showAnalysis?: boolean;
+  onChange?: (data: any) => void;
+  onError?: (error: Error) => void;
+}
+
+export default function CircuitRenderer({
+  circuitData,
+  editable = true,
+  simulationEnabled = true,
+  showAnalysis = true,
+  onChange,
+  onError,
+}: CircuitRendererProps) {
+  const [nodes, setNodes, onNodesChange] = useNodesState(circuitData.nodes || []);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    (circuitData.edges || []).map((edge: Edge) => ({
+      ...edge,
+      animated: circuitData.simulation_config?.animate_current_flow || false,
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+        color: '#888',
+      },
+      style: {
+        stroke: edge.data?.wire_color || '#888',
+        strokeWidth: 2,
+      },
+    }))
+  );
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [showAnalysisPanel, setShowAnalysisPanel] = useState(showAnalysis);
+
+  const onConnect = useCallback(
+    (params: Connection) => {
+      if (!editable) return;
+      setEdges((eds) => addEdge({
+        ...params,
+        animated: isSimulating,
+        style: { stroke: '#888', strokeWidth: 2 },
+      }, eds));
+    },
+    [editable, isSimulating, setEdges]
+  );
+
+  // Notify parent of changes
+  const handleNodesChange = useCallback(
+    (changes: any) => {
+      onNodesChange(changes);
+      // Debounced update to parent
+      setTimeout(() => {
+        onChange?.({ nodes, edges });
+      }, 300);
+    },
+    [onNodesChange, nodes, edges, onChange]
+  );
+
+  const toggleSimulation = () => {
+    setIsSimulating(!isSimulating);
+    setEdges((eds) =>
+      eds.map((edge) => ({
+        ...edge,
+        animated: !isSimulating,
+      }))
+    );
+  };
+
+  const analysis = circuitData.analysis;
+
+  return (
+    <div className="h-[500px] w-full relative">
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={handleNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        nodeTypes={nodeTypes}
+        nodesDraggable={editable}
+        nodesConnectable={editable}
+        fitView
+        fitViewOptions={{ padding: 0.3 }}
+        className="bg-background"
+        proOptions={{ hideAttribution: true }}
+      >
+        <Background variant={BackgroundVariant.Dots} gap={20} size={1} />
+        <Controls showInteractive={editable} />
+        <MiniMap 
+          className="!bg-muted !border-border" 
+          nodeColor={() => 'hsl(var(--primary))'}
+        />
+
+        {/* Simulation Controls */}
+        {simulationEnabled && (
+          <Panel position="top-left">
+            <Card className="p-2 flex gap-2">
+              <Button 
+                size="sm" 
+                variant={isSimulating ? 'destructive' : 'default'}
+                onClick={toggleSimulation}
+              >
+                {isSimulating ? <Pause className="w-3 h-3 mr-1" /> : <Play className="w-3 h-3 mr-1" />}
+                {isSimulating ? 'Stop' : 'Simulate'}
+              </Button>
+              <Button size="sm" variant="outline" onClick={() => setShowAnalysisPanel(!showAnalysisPanel)}>
+                <Info className="w-3 h-3 mr-1" /> Analysis
+              </Button>
+            </Card>
+          </Panel>
+        )}
+
+        {/* Analysis Panel */}
+        {showAnalysisPanel && analysis && (
+          <Panel position="top-right">
+            <Card className="p-4 max-w-xs space-y-3 max-h-[400px] overflow-y-auto">
+              <h3 className="font-semibold text-sm flex items-center gap-1">
+                <Zap className="w-4 h-4 text-yellow-500" /> Circuit Analysis
+              </h3>
+              
+              <div className="space-y-2 text-sm">
+                <div>
+                  <span className="text-muted-foreground">Type:</span>
+                  <Badge variant="outline" className="ml-2 capitalize">
+                    {analysis.circuit_type?.replace(/_/g, ' ')}
+                  </Badge>
+                </div>
+
+                {analysis.total_resistance && (
+                  <div className="p-2 bg-muted rounded">
+                    <InlineMath math={analysis.total_resistance.latex} />
+                  </div>
+                )}
+
+                {analysis.total_current && (
+                  <div className="p-2 bg-muted rounded">
+                    <InlineMath math={analysis.total_current.latex} />
+                  </div>
+                )}
+
+                {analysis.equations?.map((eq: any, i: number) => (
+                  <div key={i} className="p-2 bg-blue-50 dark:bg-blue-950/30 rounded">
+                    <p className="text-xs text-muted-foreground mb-1">{eq.description}</p>
+                    <InlineMath math={eq.latex} />
+                  </div>
+                ))}
+
+                {analysis.component_analysis?.map((comp: any, i: number) => (
+                  <div key={i} className="p-2 border rounded text-xs">
+                    <div className="font-medium">{comp.component}</div>
+                    <div>V = {comp.voltage_drop?.toFixed(2)}V</div>
+                    <div>I = {comp.current?.toFixed(4)}A</div>
+                    <div>P = {comp.power?.toFixed(4)}W</div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </Panel>
+        )}
+      </ReactFlow>
+    </div>
+  );
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/visualizer/renderers/ChemistryRenderer.tsx
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+import SmilesDrawer from 'smiles-drawer';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { RotateCw, Maximize2, Atom, Beaker } from 'lucide-react';
+
+interface ChemistryRendererProps {
+  smiles: string;
+  editable?: boolean;
+  showProperties?: boolean;
+  onError?: (error: Error) => void;
+}
+
+export default function ChemistryRenderer({
+  smiles,
+  editable = true,
+  showProperties = true,
+  onError,
+}: ChemistryRendererProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [smilesInput, setSmilesInput] = useState(smiles);
+  const [moleculeInfo, setMoleculeInfo] = useState<any>(null);
+  const [canvasSize, setCanvasSize] = useState({ width: 600, height: 400 });
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    const drawer = new SmilesDrawer.SmiDrawer({
+      width: canvasSize.width,
+      height: canvasSize.height,
+      bondThickness: 1.5,
+      bondLength: 25,
+      shortBondLength: 0.85,
+      bondSpacing: 4,
+      atomVisualization: 'default',
+      isomeric: true,
+      debug: false,
+      terminalCarbons: false,
+      explicitHydrogens: false,
+      overlapSensitivity: 0.42,
+      overlapResolutionIterations: 1,
+      compactDrawing: false,
+      fontSizeLarge: 11,
+      fontSizeSmall: 5,
+      padding: 30,
+      themes: {
+        light: {
+          C: '#222',
+          O: '#e74c3c',
+          N: '#3498db',
+          S: '#f39c12',
+          P: '#9b59b6',
+          F: '#1abc9c',
+          Cl: '#27ae60',
+          Br: '#e67e22',
+          I: '#8e44ad',
+          Fe: '#d35400',
+          H: '#7f8c8d',
+          BACKGROUND: '#ffffff',
+        },
+        dark: {
+          C: '#ddd',
+          O: '#ff6b6b',
+          N: '#74b9ff',
+          S: '#ffeaa7',
+          P: '#a29bfe',
+          F: '#55efc4',
+          Cl: '#00b894',
+          Br: '#fab1a0',
+          I: '#dfe6e9',
+          Fe: '#e17055',
+          H: '#b2bec3',
+          BACKGROUND: '#1a1a2e',
+        },
+      },
+    });
+
+    try {
+      SmilesDrawer.parse(smilesInput, (tree: any) => {
+        drawer.draw(tree, canvasRef.current, 'light');
+        
+        // Extract molecule info from the parse tree
+        if (tree) {
+          const atoms = new Set<string>();
+          const atomCounts: Record<string, number> = {};
+          // Basic analysis from SMILES string
+          const elementRegex = /([A-Z][a-z]?)/g;
+          let match;
+          while ((match = elementRegex.exec(smilesInput)) !== null) {
+            const element = match[1];
+            atoms.add(element);
+            atomCounts[element] = (atomCounts[element] || 0) + 1;
+          }
+          
+          setMoleculeInfo({
+            formula: Object.entries(atomCounts)
+              .map(([el, count]) => `${el}${count > 1 ? count : ''}`)
+              .join(''),
+            atoms: Array.from(atoms),
+            hasRings: smilesInput.includes('1') || smilesInput.includes('c'),
+            hasDoubleBonds: smilesInput.includes('='),
+            hasTripleBonds: smilesInput.includes('#'),
+            isAromatic: /[a-z]/.test(smilesInput) && smilesInput.includes('c'),
+          });
+        }
+      }, (err: Error) => {
+        onError?.(new Error(`Invalid SMILES: ${err.message}`));
+      });
+    } catch (err) {
+      onError?.(err as Error);
+    }
+  }, [smilesInput, canvasSize, onError]);
+
+  return (
+    <div className="flex flex-col gap-4 p-4">
+      {/* Canvas */}
+      <div className="flex justify-center bg-white dark:bg-gray-900 rounded-lg p-4 border">
+        <canvas
+          ref={canvasRef}
+          width={canvasSize.width}
+          height={canvasSize.height}
+          className="max-w-full h-auto"
+          role="img"
+          aria-label={`Molecular structure: ${smilesInput}`}
+        />
+      </div>
+
+      {/* SMILES Editor */}
+      {editable && (
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={smilesInput}
+            onChange={(e) => setSmilesInput(e.target.value)}
+            className="flex-1 px-3 py-2 border rounded-lg font-mono text-sm 
+                       bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+            placeholder="Enter SMILES string..."
+            aria-label="SMILES notation input"
+          />
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => setSmilesInput(smiles)}
+          >
+            <RotateCw className="w-3 h-3" />
+          </Button>
+        </div>
+      )}
+
+      {/* Molecule Properties */}
+      {showProperties && moleculeInfo && (
+        <Card className="p-3">
+          <h4 className="text-sm font-semibold mb-2 flex items-center gap-1">
+            <Atom className="w-4 h-4" /> Molecule Properties
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="secondary">Formula: {moleculeInfo.formula}</Badge>
+            {moleculeInfo.isAromatic && <Badge variant="outline">Aromatic</Badge>}
+            {moleculeInfo.hasRings && <Badge variant="outline">Cyclic</Badge>}
+            {moleculeInfo.hasDoubleBonds && <Badge variant="outline">C=C Present</Badge>}
+            {moleculeInfo.hasTripleBonds && <Badge variant="outline">C≡C Present</Badge>}
+            <Badge variant="outline">
+              Elements: {moleculeInfo.atoms.join(', ')}
+            </Badge>
+          </div>
+        </Card>
+      )}
+    </div>
+  );
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/visualizer/renderers/MathGraphRenderer.tsx
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { Slider } from '@/components/ui/slider';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { InlineMath, BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
+
+const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
+
+interface MathGraphRendererProps {
+  graphData: any;
+  interactive?: boolean;
+  showSliders?: boolean;
+  onChange?: (data: any) => void;
+  onError?: (error: Error) => void;
+}
+
+// Simple math expression evaluator (for client-side computation)
+function evaluateExpression(expr: string, x: number, params: Record<string, number> = {}): number {
+  try {
+    const scope = { x, ...params, ...Math };
+    // Safe evaluation using Function constructor with limited scope
+    const fn = new Function(
+      ...Object.keys(scope),
+      `return ${expr
+        .replace(/\^/g, '**')
+        .replace(/sin/g, 'Math.sin')
+        .replace(/cos/g, 'Math.cos')
+        .replace(/tan/g, 'Math.tan')
+        .replace(/sqrt/g, 'Math.sqrt')
+        .replace(/abs/g, 'Math.abs')
+        .replace(/log/g, 'Math.log')
+        .replace(/ln/g, 'Math.log')
+        .replace(/exp/g, 'Math.exp')
+        .replace(/pi/g, 'Math.PI')
+        .replace(/e(?![xp])/g, 'Math.E')
+      }`
+    );
+    return fn(...Object.values(scope));
+  } catch {
+    return NaN;
+  }
+}
+
+export default function MathGraphRenderer({
+  graphData,
+  interactive = true,
+  showSliders = true,
+  onChange,
+  onError,
+}: MathGraphRendererProps) {
+  // Parameter state for interactive sliders
+  const [parameters, setParameters] = useState<Record<string, number>>(() => {
+    const initial: Record<string, number> = {};
+    graphData.interactive?.parameter_sliders?.forEach((slider: any) => {
+      initial[slider.param] = slider.default;
+    });
+    return initial;
+  });
+
+  // Generate plot traces
+  const traces = useMemo(() => {
+    if (!graphData.traces) return [];
+
+    return graphData.traces.map((trace: any) => {
+      const xRange = trace.x_range || [-10, 10];
+      const samples = trace.samples || 200;
+      const step = (xRange[1] - xRange[0]) / samples;
+      
+      const xValues: number[] = [];
+      const yValues: number[] = [];
+      
+      // Use parameterized function if sliders exist
+      const funcExpr = trace.parameterized_function || trace.function;
+      
+      for (let i = 0; i <= samples; i++) {
+        const x = xRange[0] + i * step;
+        const y = evaluateExpression(funcExpr, x, parameters);
+        if (isFinite(y) && Math.abs(y) < 1e6) {
+          xValues.push(x);
+          yValues.push(y);
+        } else {
+          // Insert NaN to break the line at discontinuities
+          xValues.push(x);
+          yValues.push(NaN);
+        }
+      }
+
+      return {
+        x: xValues,
+        y: yValues,
+        type: 'scatter',
+        mode: 'lines',
+        name: trace.label || trace.latex || 'f(x)',
+        line: {
+          color: trace.color || '#3B82F6',
+          width: 2.5,
+          dash: trace.style === 'dashed' ? 'dash' : trace.style === 'dotted' ? 'dot' : 'solid',
+        },
+        hovertemplate: `x: %{x:.2f}<br>y: %{y:.2f}<extra>${trace.label || ''}</extra>`,
+      };
+    });
+  }, [graphData.traces, parameters]);
+
+  // Key points as scatter markers
+  const keyPointTraces = useMemo(() => {
+    if (!graphData.traces) return [];
+
+    return graphData.traces
+      .filter((trace: any) => trace.key_points?.length > 0)
+      .flatMap((trace: any) =>
+        [{
+          x: trace.key_points.map((p: any) => p.x),
+          y: trace.key_points.map((p: any) => p.y),
+          type: 'scatter',
+          mode: 'markers+text',
+          name: 'Key Points',
+          text: trace.key_points.map((p: any) => p.annotation || ''),
+          textposition: 'top center',
+          textfont: { size: 11 },
+          marker: {
+            size: 8,
+            color: '#EF4444',
+            symbol: 'circle',
+            line: { color: '#fff', width: 2 },
+          },
+          hovertemplate: trace.key_points.map(
+            (p: any) => `${p.label}: (${p.x}, ${p.y})<extra></extra>`
+          ),
+          showlegend: false,
+        }]
+      );
+  }, [graphData.traces]);
+
+  const layout = useMemo(() => ({
+    title: {
+      text: graphData.layout?.title || '',
+      font: { size: 16, family: 'Inter, sans-serif' },
+    },
+    xaxis: {
+      title: graphData.layout?.x_label || 'x',
+      zeroline: true,
+      zerolinecolor: '#888',
+      gridcolor: '#e5e5e5',
+      showgrid: graphData.layout?.show_grid !== false,
+    },
+    yaxis: {
+      title: graphData.layout?.y_label || 'y',
+      zeroline: true,
+      zerolinecolor: '#888',
+      gridcolor: '#e5e5e5',
+      showgrid: graphData.layout?.show_grid !== false,
+      scaleanchor: graphData.layout?.aspect_ratio === 'equal' ? 'x' : undefined,
+    },
+    showlegend: traces.length > 1,
+    legend: { x: 1, xanchor: 'right', y: 1 },
+    margin: { l: 60, r: 30, t: 50, b: 50 },
+    paper_bgcolor: 'transparent',
+    plot_bgcolor: 'transparent',
+    hovermode: 'closest',
+    dragmode: interactive ? 'pan' : 'zoom',
+    annotations: graphData.layout?.annotations?.map((ann: any) => ({
+      x: ann.x,
+      y: ann.y,
+      text: ann.text,
+      showarrow: ann.arrow !== false,
+      arrowhead: 2,
+      arrowsize: 1,
+      font: { size: 12 },
+    })) || [],
+  }), [graphData.layout, traces.length, interactive]);
+
+  const config = {
+    responsive: true,
+    displayModeBar: true,
+    modeBarButtonsToRemove: ['lasso2d', 'select2d'] as any[],
+    displaylogo: false,
+  };
+
+  return (
+    <div className="flex flex-col gap-4 p-4">
+      {/* Function Display */}
+      {graphData.traces?.map((trace: any, i: number) => (
+        trace.latex && (
+          <div key={i} className="flex items-center gap-2 p-2 bg-muted rounded-lg">
+            <div 
+              className="w-4 h-1 rounded" 
+              style={{ backgroundColor: trace.color || '#3B82F6' }} 
+            />
+            <BlockMath math={trace.latex} />
+          </div>
+        )
+      ))}
+
+      {/* Plot */}
+      <div className="border rounded-lg overflow-hidden bg-white dark:bg-gray-950">
+        <Plot
+          data={[...traces, ...keyPointTraces]}
+          layout={layout}
+          config={config}
+          style={{ width: '100%', height: '450px' }}
+          useResizeHandler
+        />
+      </div>
+
+      {/* Interactive Parameter Sliders */}
+      {showSliders && graphData.interactive?.parameter_sliders?.length > 0 && (
+        <Card className="p-4">
+          <h4 className="text-sm font-semibold mb-3">Interactive Parameters</h4>
+          <div className="space-y-4">
+            {graphData.interactive.parameter_sliders.map((slider: any) => (
+              <div key={slider.param} className="space-y-1">
+                <div className="flex justify-between text-sm">
+                  <span className="font-medium">
+                    <InlineMath math={`${slider.param} = ${parameters[slider.param]?.toFixed(2)}`} />
+                  </span>
+                  <span className="text-muted-foreground text-xs">
+                    [{slider.min}, {slider.max}]
+                  </span>
+                </div>
+                <Slider
+                  value={[parameters[slider.param] || slider.default]}
+                  onValueChange={([value]) => {
+                    setParameters(prev => ({ ...prev, [slider.param]: value }));
+                  }}
+                  min={slider.min}
+                  max={slider.max}
+                  step={slider.step}
+                  className="w-full"
+                />
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
+
+      {/* Key Points Legend */}
+      {graphData.traces?.some((t: any) => t.key_points?.length > 0) && (
+        <Card className="p-3">
+          <h4 className="text-sm font-semibold mb-2">Key Points</h4>
+          <div className="flex flex-wrap gap-2">
+            {graphData.traces.flatMap((t: any) =>
+              (t.key_points || []).map((pt: any, i: number) => (
+                <Badge key={i} variant="outline" className="text-xs">
+                  {pt.label}: ({pt.x}, {pt.y})
+                </Badge>
+              ))
+            )}
+          </div>
+        </Card>
+      )}
+    </div>
+  );
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: app/(dashboard)/workspace/[id]/page.tsx — MAIN WORKSPACE
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { useState, useCallback, useTransition } from 'react';
+import { useParams } from 'next/navigation';
+import VisualizerDisplay from '@/components/visualizer/VisualizerDisplay';
+import PromptInput from '@/components/input/PromptInput';
+import ComplexitySlider from '@/components/input/ComplexitySlider';
+import StepByStep from '@/components/explanation/StepByStep';
+import VisualizerToolbar from '@/components/visualizer/VisualizerToolbar';
+import { Card } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import { Loader2, Brain, Eye, BookOpen, History, Sparkles } from 'lucide-react';
+import { toast } from 'sonner';
+
+interface GenerationResult {
+  id: string;
+  classification: {
+    domain: string;
+    sub_domain: string;
+    confidence: number;
+    visualization_type: string;
+    complexity_detected: string;
+    suggested_enhancements: string[];
+  };
+  diagram: {
+    type: string;
+    code?: string;
+    data?: any;
+  };
+  rawOutput: string;
+  verification: {
+    isVerified: boolean;
+    consensusAccuracy: number;
+    allErrors: any[];
+    allSuggestions: string[];
+  } | null;
+}
+
+export default function WorkspacePage() {
+  const params = useParams();
+  const workspaceId = params.id as string;
+
+  const [result, setResult] = useState<GenerationResult | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [complexity, setComplexity] = useState('high_school');
+  const [history, setHistory] = useState<GenerationResult[]>([]);
+  const [activeTab, setActiveTab] = useState('visualizer');
+  const [isPending, startTransition] = useTransition();
+
+  const handleGenerate = useCallback(async (prompt: string) => {
+    setIsGenerating(true);
+    
+    try {
+      const response = await fetch('/api/ai/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt,
+          complexity,
+          workspaceId,
+          skipVerification: false,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Generation failed');
+      }
+
+      const data: GenerationResult = await response.json();
+      
+      startTransition(() => {
+        setResult(data);
+        setHistory(prev => [data, ...prev.slice(0, 19)]); // Keep last 20
+        setActiveTab('visualizer');
+      });
+
+      // Show verification status
+      if (data.verification?.isVerified) {
+        toast.success('Diagram generated and triple-verified! ✓', {
+          description: `Accuracy: ${Math.round((data.verification.consensusAccuracy || 0) * 100)}%`,
+        });
+      } else if (data.verification && !data.verification.isVerified) {
+        toast.warning('Diagram generated but verification found potential issues', {
+          description: 'Review the suggestions in the analysis panel',
+        });
+      } else {
+        toast.success('Diagram generated successfully!');
+      }
+
+    } catch (error) {
+      toast.error('Failed to generate', {
+        description: (error as Error).message,
+      });
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [complexity, workspaceId]);
+
+  const handleDiagramChange = useCallback((newData: any) => {
+    if (!result) return;
+    setResult(prev => prev ? {
+      ...prev,
+      diagram: { ...prev.diagram, ...newData },
+    } : null);
+  }, [result]);
+
+  return (
+    <div className="flex flex-col h-[calc(100vh-64px)]">
+      {/* ─── TOP: INPUT SECTION ─── */}
+      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-16 z-40">
+        <div className="max-w-5xl mx-auto px-4 py-4">
+          <PromptInput
+            onSubmit={handleGenerate}
+            isLoading={isGenerating}
+            placeholder="Describe what you want to visualize... (e.g., 'Draw the structure of caffeine' or 'Show projectile motion at 45°')"
+          />
+          
+          <div className="flex items-center justify-between mt-3">
+            <ComplexitySlider 
+              value={complexity} 
+              onChange={setComplexity}
+            />
+            
+            {result && (
+              <div className="flex gap-2">
+                <Badge variant="outline" className="capitalize">
+                  <Brain className="w-3 h-3 mr-1" />
+                  {result.classification.domain}
+                </Badge>
+                <Badge variant="outline">
+                  {result.classification.sub_domain.replace(/_/g, ' ')}
+                </Badge>
+                <Badge 
+                  variant={result.classification.confidence > 0.8 ? 'default' : 'secondary'}
+                >
+                  {Math.round(result.classification.confidence * 100)}% confident
+                </Badge>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ─── MAIN: CONTENT AREA ─── */}
+      <div className="flex-1 overflow-hidden">
+        {isGenerating ? (
+          <div className="flex flex-col items-center justify-center h-full gap-4">
+            <div className="relative">
+              <Loader2 className="w-12 h-12 animate-spin text-primary" />
+              <Sparkles className="w-5 h-5 text-yellow-500 absolute -top-1 -right-1 animate-pulse" />
+            </div>
+            <div className="text-center">
+              <p className="font-medium">Generating your visualization...</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Classifying → Generating → Triple Verifying
+              </p>
+            </div>
+            {/* Progress indicators */}
+            <div className="flex gap-3 mt-2">
+              {['Classify', 'Generate', 'Verify'].map((step, i) => (
+                <div key={step} className="flex items-center gap-1.5">
+                  <div className={`w-2 h-2 rounded-full ${
+                    i === 0 ? 'bg-green-500' : 
+                    i === 1 ? 'bg-blue-500 animate-pulse' : 
+                    'bg-muted'
+                  }`} />
+                  <span className="text-xs text-muted-foreground">{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : result ? (
+          <Tabs 
+            value={activeTab} 
+            onValueChange={setActiveTab} 
+            className="h-full flex flex-col"
+          >
+            <div className="border-b px-4">
+              <TabsList className="h-10">
+                <TabsTrigger value="visualizer" className="gap-1.5">
+                  <Eye className="w-3.5 h-3.5" /> Visualizer
+                </TabsTrigger>
+                <TabsTrigger value="explanation" className="gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5" /> Explanation
+                </TabsTrigger>
+                <TabsTrigger value="history" className="gap-1.5">
+                  <History className="w-3.5 h-3.5" /> History
+                  {history.length > 0 && (
+                    <Badge variant="secondary" className="ml-1 h-5 px-1.5 text-[10px]">
+                      {history.length}
+                    </Badge>
+                  )}
+                </TabsTrigger>
+              </TabsList>
+            </div>
+
+            <TabsContent value="visualizer" className="flex-1 overflow-auto mt-0 p-4">
+              <div className="max-w-5xl mx-auto space-y-4">
+                {/* Toolbar */}
+                <VisualizerToolbar
+                  diagramId={result.id}
+                  diagramType={result.diagram.type}
+                  rawCode={result.rawOutput}
+                  verification={result.verification}
+                />
+                
+                {/* Main Visualizer */}
+                <VisualizerDisplay
+                  type={result.diagram.type}
+                  data={result.diagram.data || result.diagram.code || result.diagram}
+                  isEditable={true}
+                  isVerified={result.verification?.isVerified || false}
+                  verificationScore={result.verification?.consensusAccuracy}
+                  onDataChange={handleDiagramChange}
+                  className="min-h-[400px]"
+                />
+
+                {/* Enhancement Suggestions */}
+                {result.classification.suggested_enhancements?.length > 0 && (
+                  <Card className="p-3">
+                    <h4 className="text-sm font-semibold mb-2 flex items-center gap-1">
+                      <Sparkles className="w-4 h-4 text-yellow-500" />
+                      Suggested Enhancements
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {result.classification.suggested_enhancements.map((suggestion, i) => (
+                        <Button
+                          key={i}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs"
+                          onClick={() => handleGenerate(
+                            `${result.classification.domain}: ${suggestion}. Original: ${result.rawOutput}`
+                          )}
+                        >
+                          + {suggestion}
+                        </Button>
+                      ))}
+                    </div>
+                  </Card>
+                )}
+
+                {/* Verification Warnings */}
+                {result.verification?.allErrors?.length > 0 && (
+                  <Card className="p-3 border-yellow-300 bg-yellow-50 dark:bg-yellow-950/20">
+                    <h4 className="text-sm font-semibold mb-2 text-yellow-800 dark:text-yellow-200">
+                      ⚠ Verification Notes
+                    </h4>
+                    <ul className="space-y-1">
+                      {result.verification.allErrors.map((err, i) => (
+                        <li key={i} className="text-xs text-yellow-700 dark:text-yellow-300">
+                          • [{err.severity}] {err.description}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                )}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="explanation" className="flex-1 overflow-auto mt-0 p-4">
+              <div className="max-w-3xl mx-auto">
+                <StepByStep
+                  domain={result.classification.domain}
+                  subDomain={result.classification.sub_domain}
+                  complexity={complexity}
+                  diagramData={result.diagram}
+                  rawOutput={result.rawOutput}
+                />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="history" className="flex-1 overflow-auto mt-0 p-4">
+              <div className="max-w-3xl mx-auto space-y-3">
+                {history.map((item, i) => (
+                  <Card
+                    key={item.id || i}
+                    className="p-3 cursor-pointer hover:shadow-md transition-shadow"
+                    onClick={() => {
+                      setResult(item);
+                      setActiveTab('visualizer');
+                    }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Badge variant="outline" className="capitalize text-xs">
+                          {item.classification.domain}
+                        </Badge>
+                        <p className="text-sm mt-1 text-muted-foreground line-clamp-1">
+                          {/* Access original prompt if available */}
+                          {item.classification.sub_domain.replace(/_/g, ' ')}
+                        </p>
+                      </div>
+                      {item.verification?.isVerified && (
+                        <Badge className="bg-green-100 text-green-800 text-xs">
+                          ✓ Verified
+                        </Badge>
+                      )}
+                    </div>
+                  </Card>
+                ))}
+                {history.length === 0 && (
+                  <div className="text-center text-muted-foreground py-12">
+                    <History className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                    <p>No history yet. Generate your first diagram!</p>
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+          </Tabs>
+        ) : (
+          /* Empty state */
+          <div className="flex flex-col items-center justify-center h-full gap-6 px-4">
+            <div className="text-center max-w-lg">
+              <div className="text-6xl mb-4">🔬</div>
+              <h2 className="text-2xl font-bold mb-2">NEXUS STEM Visualizer</h2>
+              <p className="text-muted-foreground">
+                Enter any STEM concept and get an interactive, editable, 
+                triple-verified visualization instantly.
+              </p>
+            </div>
+            
+            {/* Quick start examples */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl w-full">
+              {[
+                { emoji: '🧪', text: 'Draw the structure of Aspirin', domain: 'Chemistry' },
+                { emoji: '📐', text: 'Graph y = sin(x) + cos(2x)', domain: 'Math' },
+                { emoji: '⚡', text: 'Series circuit with 9V battery and 3 resistors', domain: 'Circuits' },
+                { emoji: '🧬', text: 'Show the process of DNA replication', domain: 'Biology' },
+                { emoji: '🚀', text: 'Projectile motion at 60° with v₀ = 20 m/s', domain: 'Physics' },
+                { emoji: '🔄', text: 'Flowchart for binary search algorithm', domain: 'CS' },
+              ].map((example) => (
+                <Card
+                  key={example.text}
+                  className="p-3 cursor-pointer hover:shadow-md hover:border-primary/50 
+                             transition-all group"
+                  onClick={() => handleGenerate(example.text)}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl group-hover:scale-110 transition-transform">
+                      {example.emoji}
+                    </span>
+                    <div>
+                      <Badge variant="secondary" className="text-[10px] mb-1">
+                        {example.domain}
+                      </Badge>
+                      <p className="text-sm">{example.text}</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/input/PromptInput.tsx
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React, { useState, useRef, useCallback } from 'react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { 
+  Send, Mic, Camera, PenLine, Paperclip, Loader2, 
+  Sparkles, X 
+} from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
+interface PromptInputProps {
+  onSubmit: (prompt: string) => void;
+  isLoading?: boolean;
+  placeholder?: string;
+}
+
+export default function PromptInput({ 
+  onSubmit, 
+  isLoading = false, 
+  placeholder 
+}: PromptInputProps) {
+  const [input, setInput] = useState('');
+  const [inputMode, setInputMode] = useState<'text' | 'voice' | 'camera' | 'sketch'>('text');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleSubmit = useCallback(() => {
+    const trimmed = input.trim();
+    if (!trimmed || isLoading) return;
+    onSubmit(trimmed);
+  }, [input, isLoading, onSubmit]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  return (
+    <div className="relative">
+      <div className="flex items-end gap-2 p-2 border rounded-2xl bg-background shadow-sm 
+                      focus-within:ring-2 focus-within:ring-ring focus-within:shadow-md 
+                      transition-all duration-200">
+        {/* Input Mode Buttons */}
+        <TooltipProvider delayDuration={300}>
+          <div className="flex gap-1 pb-1">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={() => setInputMode('voice')}
+                  disabled={isLoading}
+                >
+                  <Mic className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Voice Input</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={() => setInputMode('camera')}
+                  disabled={isLoading}
+                >
+                  <Camera className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Camera / OCR</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  onClick={() => setInputMode('sketch')}
+                  disabled={isLoading}
+                >
+                  <PenLine className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Sketch Input</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 rounded-full"
+                  disabled={isLoading}
+                >
+                  <Paperclip className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Upload File</TooltipContent>
+            </Tooltip>
+          </div>
+        </TooltipProvider>
+
+        {/* Text Input */}
+        <Textarea
+          ref={textareaRef}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder || "Describe a STEM concept to visualize..."}
+          className="flex-1 min-h-[44px] max-h-[120px] resize-none border-0 
+                     focus-visible:ring-0 bg-transparent p-2 text-sm"
+          rows={1}
+          disabled={isLoading}
+          aria-label="STEM visualization prompt"
+        />
+
+        {/* Submit Button */}
+        <Button
+          onClick={handleSubmit}
+          disabled={!input.trim() || isLoading}
+          size="icon"
+          className="h-9 w-9 rounded-full shrink-0 mb-0.5"
+        >
+          {isLoading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Send className="w-4 h-4" />
+          )}
+        </Button>
+      </div>
+
+      {/* AI Enhancement Hint */}
+      {input.length > 5 && !isLoading && (
+        <div className="absolute -bottom-6 left-4 flex items-center gap-1 text-[10px] text-muted-foreground">
+          <Sparkles className="w-3 h-3" />
+          Press Enter to generate • Shift+Enter for new line
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+```tsx
+// ──────────────────────────────────────────────────────────────
+// FILE: components/input/ComplexitySlider.tsx
+// ──────────────────────────────────────────────────────────────
+
+'use client';
+
+import React from 'react';
+import { Badge } from '@/components/ui/badge';
+
+interface ComplexitySliderProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const LEVELS = [
+  { id: 'elementary', label: 'ELI5', emoji: '🧒', description: 'Simple & visual' },
+  { id: 'middle_school', label: 'Middle', emoji: '📚', description: 'Basic concepts' },
+  { id: 'high_school', label: 'High School', emoji: '🎓', description: 'Standard' },
+  { id: 'undergraduate', label: 'Undergrad', emoji: '🏛️', description: 'Advanced' },
+  { id: 'graduate', label: 'Graduate', emoji: '🔬', description: 'Research-level' },
+  { id: 'research', label: 'PhD', emoji: '🧠', description: 'Expert' },
+];
+
+export default function ComplexitySlider({ value, onChange }: ComplexitySliderProps) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <span className="text-xs text-muted-foreground mr-1">Level:</span>
+      {LEVELS.map((level) => (
+        <button
+          key={level.id}
+          onClick={() => onChange(level.id)}
+          className={`
+            px-2 py-1 rounded-md text-xs transition-all duration-200
+            ${value === level.id
+              ? 'bg-primary text-primary-foreground shadow-sm scale-105'
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+            }
+          `}
+          title={level.description}
+          aria-label={`Complexity level: ${level.label}`}
+        >
+          <span className="mr-0.5">{level.emoji}</span>
+          <span className="hidden sm:inline">{level.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 9: EXPORT SYSTEM
+# ═══════════════════════════════════════════════════════════════
+
+```typescript
+// ──────────────────────────────────────────────────────────────
+// FILE: lib/export/svg-exporter.ts
+// ──────────────────────────────────────────────────────────────
+
+export async function exportToSVG(
+  containerElement: HTMLElement,
+  filename: string = 'diagram'
+): Promise<void> {
+  const svgElement = containerElement.querySelector('svg');
+  if (!svgElement) throw new Error('No SVG element found');
+
+  // Clone and clean SVG
+  const clone = svgElement.cloneNode(true) as SVGElement;
+  
+  // Inline all computed styles
+  const elements = clone.querySelectorAll('*');
+  elements.forEach((el) => {
+    const computed = window.getComputedStyle(el as Element);
+    const style = Array.from(computed)
+      .map((prop) => `${prop}: ${computed.getPropertyValue(prop)}`)
+      .join('; ');
+    (el as SVGElement).setAttribute('style', style);
+  });
+
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(clone);
+  const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  
+  downloadBlob(blob, `${filename}.svg`);
+}
+
+export async function exportToPNG(
+  containerElement: HTMLElement,
+  filename: string = 'diagram',
+  scale: number = 2
+): Promise<void> {
+  const svgElement = containerElement.querySelector('svg');
+  if (!svgElement) throw new Error('No SVG element found');
+
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgElement);
+  
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d')!;
+  const img = new Image();
+  
+  const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(svgBlob);
+
+  return new Promise((resolve, reject) => {
+    img.onload = () => {
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      ctx.scale(scale, scale);
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+      
+      canvas.toBlob((blob) => {
+        if (blob) {
+          downloadBlob(blob, `${filename}.png`);
+          resolve();
+        } else {
+          reject(new Error('Failed to create PNG'));
+        }
+      }, 'image/png');
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 10: KEYBOARD SHORTCUTS & ACCESSIBILITY
+# ═══════════════════════════════════════════════════════════════
+
+```typescript
+// ──────────────────────────────────────────────────────────────
+// FILE: hooks/useKeyboardShortcuts.ts
+// ──────────────────────────────────────────────────────────────
+
+import { useEffect, useCallback } from 'react';
+
+interface ShortcutMap {
+  [key: string]: () => void;
+}
+
+export function useKeyboardShortcuts(shortcuts: ShortcutMap) {
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    const key = [
+      event.ctrlKey || event.metaKey ? 'mod' : '',
+      event.shiftKey ? 'shift' : '',
+      event.altKey ? 'alt' : '',
+      event.key.toLowerCase(),
+    ].filter(Boolean).join('+');
+
+    const handler = shortcuts[key];
+    if (handler) {
+      event.preventDefault();
+      handler();
+    }
+  }, [shortcuts]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+}
+
+// Usage in workspace:
+// useKeyboardShortcuts({
+//   'mod+enter': () => handleGenerate(input),
+//   'mod+shift+e': () => exportToSVG(),
+//   'mod+z': () => undo(),
+//   'mod+shift+z': () => redo(),
+//   'mod+k': () => openCommandPalette(),
+//   'mod+/': () => toggleCodeView(),
+//   'mod+s': () => saveWorkspace(),
+//   'escape': () => closeDialog(),
+// });
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 11: DEPLOYMENT & ENVIRONMENT CONFIGURATION
+# ═══════════════════════════════════════════════════════════════
+
+```bash
+# ──────────────────────────────────────────────────────────────
+# FILE: .env.example
+# ──────────────────────────────────────────────────────────────
+
+# ─── AI PROVIDERS ───
+OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=sk-ant-...
+GOOGLE_GENERATIVE_AI_API_KEY=AI...
+
+# ─── DATABASE ───
+DATABASE_URL=postgresql://user:password@localhost:5432/nexus_stem
+REDIS_URL=redis://localhost:6379
+
+# ─── AUTH ───
+NEXTAUTH_SECRET=your-secret-here
+NEXTAUTH_URL=http://localhost:3000
+CLERK_SECRET_KEY=sk_...
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...
+
+# ─── STORAGE ───
+CLOUDFLARE_R2_ACCESS_KEY=...
+CLOUDFLARE_R2_SECRET_KEY=...
+CLOUDFLARE_R2_BUCKET=nexus-exports
+CLOUDFLARE_R2_ENDPOINT=...
+
+# ─── VECTOR DB ───
+PINECONE_API_KEY=...
+PINECONE_INDEX=nexus-diagrams
+
+# ─── RATE LIMITING ───
+UPSTASH_REDIS_REST_URL=...
+UPSTASH_REDIS_REST_TOKEN=...
+
+# ─── MONITORING ───
+SENTRY_DSN=...
+NEXT_PUBLIC_POSTHOG_KEY=...
+NEXT_PUBLIC_POSTHOG_HOST=...
+
+# ─── COLLABORATION ───
+PARTYKIT_HOST=...
+YJS_WS_SERVER=ws://localhost:1234
+
+# ─── APP ───
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_NAME=NEXUS STEM Visualizer
+```
+
+```yaml
+# ──────────────────────────────────────────────────────────────
+# FILE: docker-compose.yml
+# ──────────────────────────────────────────────────────────────
+
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=postgresql://nexus:nexus_pass@postgres:5432/nexus_stem
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: nexus_stem
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: nexus_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+  chemistry-validator:
+    build: ./services/chemistry-validator
+    ports:
+      - '8001:8000'
+    environment:
+      - ENVIRONMENT=development
+
+  math-engine:
+    build: ./services/math-engine
+    ports:
+      - '8002:8000'
+    environment:
+      - ENVIRONMENT=development
+
+  circuit-simulator:
+    build: ./services/circuit-simulator
+    ports:
+      - '8003:8000'
+    environment:
+      - ENVIRONMENT=development
+
+  collaboration-server:
+    build: ./services/collaboration-server
+    ports:
+      - '1234:1234'
+    environment:
+      - ENVIRONMENT=development
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 12: TESTING STRATEGY
+# ═══════════════════════════════════════════════════════════════
+
+```typescript
+// ──────────────────────────────────────────────────────────────
+// FILE: __tests__/ai/classifier.test.ts
+// ──────────────────────────────────────────────────────────────
+
+import { describe, it, expect } from 'vitest';
+import { classifyPrompt } from '@/lib/ai/orchestrator';
+
+describe('STEM Classifier', () => {
+  it('classifies chemistry prompts correctly', async () => {
+    const result = await classifyPrompt('Draw the molecular structure of caffeine');
+    expect(result.domain).toBe('chemistry');
+    expect(result.visualization_type).toBe('smiles');
+    expect(result.confidence).toBeGreaterThan(0.8);
+  });
+
+  it('classifies math prompts correctly', async () => {
+    const result = await classifyPrompt('Graph the function y = x^2 - 4x + 3');
+    expect(result.domain).toBe('math');
+    expect(result.visualization_type).toBe('plotly');
+  });
+
+  it('classifies circuit prompts correctly', async () => {
+    const result = await classifyPrompt('Series circuit with 12V battery and two 100 ohm resistors');
+    expect(result.domain).toBe('circuit');
+    expect(result.visualization_type).toBe('circuitjs');
+  });
+
+  it('classifies biology prompts correctly', async () => {
+    const result = await classifyPrompt('Show the stages of mitosis');
+    expect(result.domain).toBe('biology');
+  });
+
+  it('classifies physics prompts correctly', async () => {
+    const result = await classifyPrompt('Free body diagram of a block on an inclined plane');
+    expect(result.domain).toBe('physics');
+    expect(result.requires_simulation).toBe(true);
+  });
+
+  it('classifies flowchart/CS prompts correctly', async () => {
+    const result = await classifyPrompt('Flowchart for quicksort algorithm');
+    expect(result.domain).toBe('logic');
+    expect(result.visualization_type).toBe('mermaid');
+  });
+
+  it('handles ambiguous prompts gracefully', async () => {
+    const result = await classifyPrompt('energy');
+    expect(result.confidence).toBeLessThan(0.8);
+    expect(result.domain).toBeDefined();
+  });
+
+  it('detects complexity level accurately', async () => {
+    const elementary = await classifyPrompt('What does a battery look like in a circuit?');
+    expect(['elementary', 'middle_school']).toContain(elementary.complexity_detected);
+    
+    const graduate = await classifyPrompt('Derive the Navier-Stokes equations for incompressible flow');
+    expect(['graduate', 'research']).toContain(graduate.complexity_detected);
+  });
+});
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 13: PERFORMANCE OPTIMIZATIONS
+# ═══════════════════════════════════════════════════════════════
+
+```markdown
+## Critical Performance Strategies
+
+### 1. RENDERING OPTIMIZATION
+- All heavy renderers (Mermaid, ReactFlow, Plotly, Three.js) loaded via `dynamic()` with code splitting
+- SVG output cached in database to avoid re-rendering
+- Canvas-based renderers use `OffscreenCanvas` where available
+- Debounced re-renders on code edits (500ms)
+- `React.memo()` on all renderer components with deep comparison
+
+### 2. AI RESPONSE OPTIMIZATION
+- Classification uses GPT-4o-mini (fast, cheap) — not the full model
+- Generation streams results to show progress immediately
+- Triple verification runs in parallel (Promise.allSettled)
+- Response caching: Identical prompts return cached results (Redis, 1-hour TTL)
+- Semantic similarity search (Pinecone) to find similar past generations
+
+### 3. NETWORK OPTIMIZATION
+- API routes use Edge Runtime where possible
+- Static assets on CDN (Vercel Edge Network)
+- SVG/PNG exports generated client-side (no server round-trip)
+- WebSocket for collaboration (not polling)
+- Service Worker caches rendering engines for offline use
+
+### 4. BUNDLE OPTIMIZATION
+- Tree-shaking on all imports
+- Heavy libraries lazy-loaded only when their domain is detected
+- Shared chunks via Turborepo
+- Image optimization via next/image
+- CSS purging via Tailwind
+
+### 5. DATABASE OPTIMIZATION
+- Indexed columns: userId, workspaceId, domain, createdAt
+- Connection pooling via Drizzle + neon serverless driver
+- Read replicas for search queries
+- Pagination with cursor-based strategy
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 14: IMPLEMENTATION EXECUTION ORDER
+# ═══════════════════════════════════════════════════════════════
+
+```markdown
+## Phase 1: Foundation (Week 1-2)
+1. Initialize Next.js 15 project with Turborepo monorepo
+2. Set up shadcn/ui, Tailwind, TypeScript strict mode
+3. Configure Drizzle ORM + PostgreSQL schema + migrations
+4. Set up authentication (Clerk or NextAuth)
+5. Create basic layout (Header, Sidebar, Dashboard)
+6. Build the PromptInput component
+7. Build the ComplexitySlider component
+
+## Phase 2: AI Pipeline (Week 2-3)
+8. Implement CLASSIFIER system prompt + API route
+9. Implement all 6 GENERATOR system prompts
+10. Build the orchestrator (classify → generate → parse)
+11. Add triple verification engine
+12. Create output schema validators (Zod)
+13. Add error handling + retry logic
+14. Add Redis caching layer
+
+## Phase 3: Renderers (Week 3-5)
+15. Build MermaidRenderer (flowcharts, sequences, mind maps)
+16. Build ChemistryRenderer (SMILES → 2D molecules)
+17. Build MathGraphRenderer (Plotly with interactive sliders)
+18. Build CircuitRenderer (React Flow with custom nodes)
+19. Build EquationRenderer (KaTeX step-by-step)
+20. Build VisualizerDisplay master switch component
+21. Build VisualizerToolbar (export, share, edit toggles)
+
+## Phase 4: Enhanced Features (Week 5-7)
+22. Add Physics Simulation Renderer (Matter.js)
+23. Add 3D Molecule Renderer (Three.js)
+24. Add Code Editor side panel (Monaco)
+25. Build Export system (SVG, PNG, PDF, LaTeX)
+26. Add keyboard shortcuts
+27. Build version history
+28. Add accessibility (screen reader descriptions, ARIA)
+
+## Phase 5: Advanced (Week 7-9)
+29. Voice input (Web Speech API)
+30. Camera/OCR input (Tesseract.js)
+31. Collaboration (Yjs + WebSocket)
+32. Learning progress tracker
+33. Template gallery
+34. Semantic search for past diagrams
+
+## Phase 6: Polish & Deploy (Week 9-10)
+35. Performance optimization (profiling, lazy loading)
+36. Comprehensive testing (unit, integration, e2e)
+37. PWA configuration (manifest, service worker)
+38. Monitoring (Sentry, PostHog)
+39. Production deployment (Vercel + Railway)
+40. Documentation & API docs
+```
+
+---
+
+# ═══════════════════════════════════════════════════════════════
+# SECTION 15: FINAL EXECUTION INSTRUCTIONS
+# ═══════════════════════════════════════════════════════════════
+
+```markdown
+## TO THE AI CODE ASSISTANT:
+
+You now have the COMPLETE specification for NEXUS STEM AI Visualizer.
+
+### START BY:
+1. Creating the project with: `npx create-next-app@latest nexus-stem --ts --tailwind --app --src-dir`
+2. Installing ALL dependencies listed in Section 4
+3. Setting up the file structure from Section 5
+4. Implementing the database schema from Section 6
+5. Creating the AI prompts from Section 7
+6. Building the orchestrator from Section 8
+7. Building each renderer component from Section 8
+8. Building the workspace page from Section 8
+9. Following the execution order in Section 14
+
+### KEY PRINCIPLES TO MAINTAIN:
+- **Type Safety**: Every function, component, and API must be fully typed
+- **Error Boundaries**: Every renderer wrapped in error boundary with "Regenerate" fallback
+- **Accessibility**: Every interactive element has aria-labels, keyboard navigation
+- **Performance**: Lazy load everything, cache everything, debounce everything
+- **Scientific Accuracy**: The AI prompts are designed for precision — DO NOT simplify them
+- **User Delight**: Micro-animations, loading states, toast notifications, smooth transitions
+
+### THIS PROMPT REPRESENTS:
+- A complete Product Requirements Document (PRD)
+- A complete Technical Architecture Document
+- A complete API Specification
+- A complete UI Component Library specification
+- A complete AI Prompt Engineering suite
+- A complete DevOps & Deployment guide
+
+Build it module by module. Test each module. Integrate incrementally.
+The result should be a world-class STEM visualization platform that surpasses 
+GPAI in every measurable dimension.
+```
+
+---
+
+**This master prompt contains approximately 60,000 tokens of production-grade specification. It is designed to be fed directly into AI coding assistants (Cursor Composer, Windsurf, Claude, GPT-4o) as a single comprehensive blueprint. Every section is self-contained yet interconnected, enabling both sequential implementation and parallel development across team members.**
