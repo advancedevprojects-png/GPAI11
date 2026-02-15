@@ -1,0 +1,7 @@
+name: Deploy Preview
+on: [pull_request]
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Preview deploy placeholder"

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>NEXUS STEM AI Visualizer — Zero-Cost Offline Suite</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>NEXUS STEM AI Visualizer <span>Zero-Cost Suite</span></h1>
+        <p>
+          Offline-first STEM workspace with local orchestration, deterministic rendering,
+          and no paid APIs.
+        </p>
+      </div>
+      <div class="header-actions">
+        <button id="newWorkspace">New Workspace</button>
+        <button id="toggleContrast">High Contrast</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel sidebar">
+        <h2>Workspace History</h2>
+        <p class="hint">Local-only history (saved to browser storage).</p>
+        <ul id="historyList" class="history-list"></ul>
+      </aside>
+
+      <section class="panel controls">
+        <h2>Multi-Modal Input</h2>
+
+        <label for="inputMode">Input mode</label>
+        <select id="inputMode">
+          <option value="text">Text</option>
+          <option value="voice">Voice (Web Speech)</option>
+          <option value="file">File (CSV for graphing)</option>
+          <option value="sketch">Sketch</option>
+        </select>
+
+        <label for="prompt">Prompt</label>
+        <textarea id="prompt" rows="4">Draw a process flow: Input -> Parse -> Solve -> Verify -> Export</textarea>
+
+        <div id="voiceControls" class="mode-panel" hidden>
+          <button id="startVoice">Start Voice</button>
+          <button id="stopVoice">Stop Voice</button>
+        </div>
+
+        <div id="fileControls" class="mode-panel" hidden>
+          <input type="file" id="fileInput" accept=".csv,text/csv" />
+        </div>
+
+        <div id="sketchControls" class="mode-panel" hidden>
+          <canvas id="sketchPad" width="280" height="140" aria-label="Sketch pad"></canvas>
+          <button id="clearSketch">Clear Sketch</button>
+        </div>
+
+        <label for="complexity">Complexity: <span id="complexityLabel">High School</span></label>
+        <input type="range" min="1" max="5" value="3" id="complexity" />
+
+        <div class="actions">
+          <button id="classify">Classify</button>
+          <button id="generate">Generate Visual</button>
+          <button id="explain">Explain</button>
+          <button id="announce">Audio Describe</button>
+          <button id="exportSvg">Export SVG</button>
+          <button id="exportPng">Export PNG</button>
+          <button id="exportJson">Export JSON</button>
+        </div>
+      </section>
+
+      <section class="panel output">
+        <h2>Visualizer Canvas</h2>
+        <div id="meta" class="meta"></div>
+        <div id="canvasWrap">
+          <svg id="svgCanvas" viewBox="0 0 1000 560" aria-label="Visual output canvas"></svg>
+          <canvas id="plotCanvas" width="1000" height="560" hidden></canvas>
+        </div>
+        <article id="explanation" class="explanation"></article>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>
+        Cost profile: $0 infra + $0 API. Uses browser-native capabilities and deterministic
+        local engines.
+      </p>
+      <p id="networkStatus" class="hint"></p>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

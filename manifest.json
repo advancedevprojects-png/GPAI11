@@ -1,0 +1,10 @@
+{
+  "name": "NEXUS STEM AI Visualizer - Zero-Cost Offline Suite",
+  "short_name": "NEXUS STEM",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#0f172a",
+  "description": "Offline-first STEM visualizer with local orchestration and zero paid dependencies.",
+  "icons": []
+}

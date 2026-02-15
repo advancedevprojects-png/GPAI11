@@ -1,0 +1,6 @@
+:root { color-scheme: dark; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; background: #020617; color: #e2e8f0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+.grid { display: grid; grid-template-columns: 320px 1fr; gap: 1rem; }
+.panel { border: 1px solid #334155; border-radius: 12px; padding: 1rem; background: #0f172a; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }

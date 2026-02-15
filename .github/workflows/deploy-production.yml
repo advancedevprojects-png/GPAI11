@@ -1,0 +1,9 @@
+name: Deploy Production
+on:
+  push:
+    branches: [main]
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Production deploy placeholder"

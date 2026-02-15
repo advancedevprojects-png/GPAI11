@@ -1,0 +1,196 @@
+:root {
+  --bg: #020617;
+  --panel: #0f172a;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #22d3ee;
+  --accent-2: #8b5cf6;
+  --danger: #fb7185;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, var(--bg));
+  color: var(--ink);
+}
+
+body.high-contrast {
+  --bg: #000;
+  --panel: #050505;
+  --ink: #fff;
+  --muted: #e2e8f0;
+  --accent: #facc15;
+  --accent-2: #38bdf8;
+}
+
+.app-header,
+.app-footer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+}
+
+.app-header span {
+  color: var(--accent);
+}
+
+.hint,
+.app-header p,
+.app-footer p {
+  color: var(--muted);
+  margin: 0.3rem 0;
+}
+
+.layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.2rem 1.2rem;
+  display: grid;
+  grid-template-columns: 290px 360px 1fr;
+  gap: 1rem;
+}
+
+.panel {
+  background: color-mix(in oklab, var(--panel), black 8%);
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 0.95rem;
+}
+
+.sidebar,
+.controls {
+  align-self: start;
+}
+
+label {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+textarea,
+select,
+button,
+input[type='range'],
+input[type='file'] {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0b1225;
+  color: var(--ink);
+  padding: 0.6rem;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.controls {
+  display: grid;
+  gap: 0.58rem;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.mode-panel {
+  border: 1px dashed #334155;
+  border-radius: 10px;
+  padding: 0.45rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+#sketchPad {
+  width: 100%;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #020617;
+  touch-action: none;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 60vh;
+  overflow: auto;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.history-list li button {
+  text-align: left;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.tag {
+  font-size: 0.77rem;
+  background: #0b1225;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
+#canvasWrap {
+  background: #060b1a;
+  border: 1px dashed #334155;
+  border-radius: 12px;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+#svgCanvas {
+  width: 100%;
+  height: 560px;
+}
+
+#plotCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.explanation {
+  margin-top: 0.7rem;
+  line-height: 1.42;
+  color: var(--muted);
+}
+
+.error {
+  color: var(--danger);
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
